@@ -1,0 +1,12 @@
+.wrapper {
+  height: var(--default-layout-header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+}
+.inner {
+  height: calc(var(--default-layout-header-height) - 6px);
+  width: var(--default-layout-width);
+  padding: 0 20px;
+}
