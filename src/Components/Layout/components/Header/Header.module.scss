@@ -1,5 +1,6 @@
 .wrapper {
   --search-border-radius: 92px;
+  --search-width: 362px;
   --search-height: 46px;
   --search-button-width: 52px;
 
@@ -24,7 +25,7 @@
 }
 // mid
 .search {
-  width: 362px;
+  width: var(--search-width);
   height: var(--search-height);
   padding: 12px 16px;
   display: flex;
@@ -53,6 +54,17 @@
     margin: 0;
     background-color: rgba(22, 24, 35, 0.12);
   }
+}
+.search-result {
+  width: var(--search-width);
+}
+.search-title {
+  height: 30px;
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: rgba(22, 24, 35, 0.5);
 }
 
 .search-close,
