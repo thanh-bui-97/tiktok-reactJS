@@ -1,17 +1,17 @@
 // Library
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless'; //Làm tooltip
 import { useEffect, useState } from 'react';
 
 // components
-import { Wrapper as PopperBase } from '~/Components/Popper';
+import SearchResult from '~/Components/Popper/SearchResult';
+import Button from '~/Components/Button';
 // SCSS module
 import style from './Header.module.scss';
 //assets-images
 import images from '~/assets/images';
-import AccountItem from '~/Components/AccountItems';
 
 const cx = classNames.bind(style);
 //-> Nếu không có ràng buộc này thì khi gọi class sẽ khó
@@ -23,7 +23,7 @@ function Header() {
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
     setTimeout(() => {
-      setSearchResult([]);
+      setSearchResult([1, 2, 3]);
     }, 0);
   }, []);
   return (
@@ -40,13 +40,7 @@ function Header() {
           interactive //interact with tooltips contents
           render={(attrs) => (
             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-              <PopperBase>
-                <h4 className={cx('search-title')}>Accounts</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperBase>
+              <SearchResult />
             </div>
           )}
         >
@@ -67,9 +61,10 @@ function Header() {
 
         {/* right */}
         <div className={cx('header-right')}>
-          <button className={cx('upload')}>Upload</button>
-          <button className={cx('log-in')}>Log in</button>
-          <span className={cx('setting')}></span>
+          <Button text rightIcon={<FontAwesomeIcon icon={faPlus} />}>
+            Up load
+          </Button>
+          <Button primary>Log in</Button>
         </div>
       </div>
     </header>

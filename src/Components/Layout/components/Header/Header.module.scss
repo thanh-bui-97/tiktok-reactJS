@@ -58,15 +58,6 @@
 .search-result {
   width: var(--search-width);
 }
-.search-title {
-  height: 30px;
-  padding: 5px 12px;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-  color: rgba(22, 24, 35, 0.5);
-}
-
 .search-close,
 .search-loadding {
   position: absolute;
@@ -94,6 +85,10 @@
 // right
 .header-right {
   width: 274px;
-  height: 36px;
   border: 0.1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+.custom {
+  color: rgb(22, 24, 35);
 }

@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import style from './Popper.module.scss';
+import style from './Wrapper.module.scss';
 
 const cx = classNames.bind(style);
 
