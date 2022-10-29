@@ -1,13 +1,23 @@
 // Library
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleXmark,
+  faSpinner,
+  faMagnifyingGlass,
+  faPlus,
+  faEllipsisVertical,
+  faEarthAsia,
+  faCircleQuestion,
+  faKeyboard,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless'; //Làm tooltip
 import { useEffect, useState } from 'react';
 
 // components
 import SearchResult from '~/Components/Popper/SearchResult';
 import Button from '~/Components/Button';
+import Menu from '~/Components/Popper/Menu';
 // SCSS module
 import style from './Header.module.scss';
 //assets-images
@@ -18,12 +28,29 @@ const cx = classNames.bind(style);
 // Vd: <h2 className={classNames(style['post-items'])}>Header</h2>;
 //-> Nếu ràng buộc nó với bind thì classNames đã luôn có style bên trong,
 // cú pháp gọi class cũng gọn hơn, vd: className={cx('post-items')}
+// -----------------------------------------------------------------------------
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    title: 'Languages',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: 'Feedback and Help',
+    to: '/feedback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Keyboard Shortcuts',
+  },
+];
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
     setTimeout(() => {
-      setSearchResult([1, 2, 3]);
+      setSearchResult([]);
     }, 0);
   }, []);
   return (
@@ -37,7 +64,7 @@ function Header() {
         {/* middle */}
         <Tippy
           visible={searchResult.length > 0} //show/hide
-          interactive //interact with tooltips contents
+          interactive //interaction with tooltips contents
           render={(attrs) => (
             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
               <SearchResult />
@@ -65,6 +92,11 @@ function Header() {
             Up load
           </Button>
           <Button primary>Log in</Button>
+          <Menu menuItems={MENU_ITEMS}>
+            <span className={cx('menu-icon')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </span>
+          </Menu>
         </div>
       </div>
     </header>
