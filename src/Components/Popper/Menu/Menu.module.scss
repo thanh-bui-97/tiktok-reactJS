@@ -4,7 +4,7 @@
   .menu-item {
     width: 100%;
     height: 42px;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 22px;
     font-weight: 500;
     margin-left: 0;
@@ -15,7 +15,33 @@
   }
 }
 
+// Menu Items
 .menu-item {
+  &:hover {
+    background: rgba(22, 24, 35, 0.03);
+  }
+}
+
+// Menu Header
+.menu--header {
+  height: 50px;
+  margin-top: -8px;
+  position: relative;
+  .btn {
+    width: 48px;
+    height: 100%;
+    background-color: transparent;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.btn {
   &:hover {
     background: rgba(22, 24, 35, 0.03);
   }

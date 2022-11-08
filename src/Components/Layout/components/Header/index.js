@@ -33,7 +33,14 @@ const cx = classNames.bind(style);
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
-    title: 'Languages',
+    title: 'English',
+    childsMenu: {
+      title: 'Languages',
+      data: [
+        { code: 'en', title: 'English' },
+        { code: 'vi', title: 'Tiếng Việt' },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -45,6 +52,11 @@ const MENU_ITEMS = [
     title: 'Keyboard Shortcuts',
   },
 ];
+
+// handleActiveItem
+function handleActiveItem(menuItems) {
+  console.log(menuItems);
+}
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -92,7 +104,7 @@ function Header() {
             Up load
           </Button>
           <Button primary>Log in</Button>
-          <Menu menuItems={MENU_ITEMS}>
+          <Menu menuItems={MENU_ITEMS} onActive={handleActiveItem}>
             <span className={cx('menu-icon')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </span>
