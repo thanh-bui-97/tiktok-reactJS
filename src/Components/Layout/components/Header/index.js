@@ -10,8 +10,15 @@ import {
   faEarthAsia,
   faCircleQuestion,
   faKeyboard,
+  faPerson,
+  faVideoCamera,
+  faGear,
+  faMoon,
+  faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/headless'; //Làm tooltip
+import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
+import Tippy from '@tippyjs/react'; //Làm tooltip
+import 'tippy.js/dist/tippy.css';
 import { useEffect, useState } from 'react';
 
 // components
@@ -22,6 +29,8 @@ import Menu from '~/Components/Popper/Menu';
 import style from './Header.module.scss';
 //assets-images
 import images from '~/assets/images';
+import { faMessage, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classNames.bind(style);
 //-> Nếu không có ràng buộc này thì khi gọi class sẽ khó
@@ -53,12 +62,50 @@ const MENU_ITEMS = [
   },
 ];
 
+const USER_MENU = [
+  {
+    icon: <FontAwesomeIcon icon={faPerson} />,
+    title: 'View profile',
+    to: '/profile',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faTiktok} />,
+    title: 'Get Coins',
+    to: '/coins',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faVideoCamera} />,
+    title: 'LIVE Studio',
+    to: '/settings',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faGear} />,
+    title: 'Settings',
+    to: '/feedback',
+  },
+  ...MENU_ITEMS,
+  {
+    icon: <FontAwesomeIcon icon={faMoon} />,
+    title: 'Dark mode',
+    to: '/feedback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+    title: 'Log out',
+    to: '/feedback',
+    separate: true,
+  },
+];
+
+const currentUser = true;
+
 // handleActiveItem
 function handleActiveItem(menuItems) {
   console.log(menuItems);
 }
 
 function Header() {
+  // handle search results input
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
     setTimeout(() => {
@@ -74,7 +121,7 @@ function Header() {
         </div>
 
         {/* middle */}
-        <Tippy
+        <HeadlessTippy
           visible={searchResult.length > 0} //show/hide
           interactive //interaction with tooltips contents
           render={(attrs) => (
@@ -96,18 +143,42 @@ function Header() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
-        </Tippy>
+        </HeadlessTippy>
 
         {/* right */}
         <div className={cx('header-right')}>
-          <Button text rightIcon={<FontAwesomeIcon icon={faPlus} />}>
+          <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
             Up load
           </Button>
-          <Button primary>Log in</Button>
-          <Menu menuItems={MENU_ITEMS} onActive={handleActiveItem}>
-            <span className={cx('menu-icon')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </span>
+          {/* check log-in */}
+          {currentUser ? (
+            <div className={cx('user-current')}>
+              <Tippy delay={[0, 200]} placement="bottom" content="Messages">
+                <span className={cx('user-message')}>
+                  <FontAwesomeIcon icon={faPaperPlane} />
+                </span>
+              </Tippy>
+              <Tippy delay={[0, 200]} placement="bottom" content="Inbox">
+                <span className={cx('user-inbox')}>
+                  <FontAwesomeIcon icon={faMessage} />
+                </span>
+              </Tippy>
+            </div>
+          ) : (
+            <Button primary>Log in</Button>
+          )}
+          <Menu menuItems={currentUser ? USER_MENU : MENU_ITEMS} onActive={handleActiveItem}>
+            {currentUser ? (
+              <img
+                className={cx('user-avatar')}
+                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8cf4fa65fd16b13e8d042e0379631773~c5_100x100.jpeg?x-expires=1667390400&x-signature=lGN2wBPorptyUxJgm4FOzqNcW3E%3D"
+                alt="huyenbaby"
+              />
+            ) : (
+              <span className={cx('menu-icon')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </span>
+            )}
           </Menu>
         </div>
       </div>

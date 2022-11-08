@@ -6,7 +6,7 @@
     height: 42px;
     font-size: 1.6rem;
     line-height: 22px;
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 0;
     padding: 10px 8px 10px 16px;
     justify-content: flex-start;
@@ -17,6 +17,9 @@
 
 // Menu Items
 .menu-item {
+  &.separate {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+  }
   &:hover {
     background: rgba(22, 24, 35, 0.03);
   }

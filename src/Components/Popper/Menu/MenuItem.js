@@ -7,8 +7,12 @@ import Button from '~/Components/Button';
 const cx = classNames.bind(style);
 
 function MenuItem({ itemData, onSelect }) {
+  const classes = cx('menu-item', {
+    separate: itemData.separate,
+  });
+
   return (
-    <Button onClick={onSelect} className={cx('menu-item')} leftIcon={itemData.icon} to={itemData.to}>
+    <Button onClick={onSelect} className={classes} leftIcon={itemData.icon} to={itemData.to}>
       {itemData.title}
     </Button>
   );

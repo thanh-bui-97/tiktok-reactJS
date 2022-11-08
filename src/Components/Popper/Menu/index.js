@@ -26,6 +26,7 @@ function Menu({ children, menuItems = [], onActive = defaultFn }) {
   }
 
   function renderItems() {
+    //-->
     return currentMenu.map((item, index) => {
       const isChildsMenu = !!item.childsMenu;
 
@@ -48,9 +49,10 @@ function Menu({ children, menuItems = [], onActive = defaultFn }) {
 
   return (
     <Tippy
+      placement="bottom-end"
+      offset={[12, 20]} //[độ lệch của điểm arrow, khoảng cách giữa tippy vs item]
       delay={[0, 700]} // delay =[show, hide]
       interactive //interaction with tooltips contents vd: onMouse
-      placement="bottom-end"
       onHide={handleHideItem}
       render={(attrs) => (
         <div className={cx('menu-box')} tabIndex="-1" {...attrs}>
