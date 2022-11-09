@@ -1,21 +1,7 @@
 // Library
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCircleXmark,
-  faSpinner,
-  faMagnifyingGlass,
-  faPlus,
-  faEllipsisVertical,
-  faEarthAsia,
-  faCircleQuestion,
-  faKeyboard,
-  faPerson,
-  faVideoCamera,
-  faGear,
-  faMoon,
-  faArrowRightFromBracket,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
@@ -28,9 +14,24 @@ import Menu from '~/Components/Popper/Menu';
 // SCSS module
 import style from './Header.module.scss';
 //assets-images
-import images from '~/assets/images';
-import { faMessage, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { faTiktok } from '@fortawesome/free-brands-svg-icons';
+import images, { LogoIcon } from '~/assets/images';
+import {
+  DarkModeIcon,
+  FeedbackAndHelpIcon,
+  GetCoinsIcon,
+  InboxIcon,
+  KeyboardShortcutsIcon,
+  LanguagesIcon,
+  LIVEStudioIcon,
+  LogOutIcon,
+  MenuIcon,
+  MessageIcon,
+  SearchCloseIcon,
+  SearchIcon,
+  SettingsIcon,
+  UploadIcon,
+  ViewProfileIcon,
+} from '~/Components/Icons';
 
 const cx = classNames.bind(style);
 //-> Nếu không có ràng buộc này thì khi gọi class sẽ khó
@@ -41,7 +42,7 @@ const cx = classNames.bind(style);
 
 const MENU_ITEMS = [
   {
-    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    icon: <LanguagesIcon />,
     title: 'English',
     childsMenu: {
       title: 'Languages',
@@ -52,52 +53,52 @@ const MENU_ITEMS = [
     },
   },
   {
-    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    icon: <FeedbackAndHelpIcon />,
     title: 'Feedback and Help',
     to: '/feedback',
   },
   {
-    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    icon: <KeyboardShortcutsIcon />,
     title: 'Keyboard Shortcuts',
+  },
+  {
+    icon: <DarkModeIcon />,
+    title: 'Dark mode',
+    to: '/feedback',
   },
 ];
 
 const USER_MENU = [
   {
-    icon: <FontAwesomeIcon icon={faPerson} />,
+    icon: <ViewProfileIcon />,
     title: 'View profile',
     to: '/profile',
   },
   {
-    icon: <FontAwesomeIcon icon={faTiktok} />,
+    icon: <GetCoinsIcon />,
     title: 'Get Coins',
     to: '/coins',
   },
   {
-    icon: <FontAwesomeIcon icon={faVideoCamera} />,
+    icon: <LIVEStudioIcon />,
     title: 'LIVE Studio',
     to: '/settings',
   },
   {
-    icon: <FontAwesomeIcon icon={faGear} />,
+    icon: <SettingsIcon />,
     title: 'Settings',
     to: '/feedback',
   },
   ...MENU_ITEMS,
   {
-    icon: <FontAwesomeIcon icon={faMoon} />,
-    title: 'Dark mode',
-    to: '/feedback',
-  },
-  {
-    icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+    icon: <LogOutIcon />,
     title: 'Log out',
     to: '/feedback',
     separate: true,
   },
 ];
 
-const currentUser = true;
+const currentUser = false;
 
 // handleActiveItem
 function handleActiveItem(menuItems) {
@@ -117,7 +118,7 @@ function Header() {
       <div className={cx('inner')}>
         {/* left */}
         <div className={cx('logo')}>
-          <img src={images.logo} alt="Tiktok" />
+          <LogoIcon />
         </div>
 
         {/* middle */}
@@ -134,20 +135,20 @@ function Header() {
             <input placeholder="Search accounts and videos" spellCheck={false} />
             <div>
               <button className={cx('search-close')}>
-                <FontAwesomeIcon icon={faCircleXmark} />
+                <SearchCloseIcon />
               </button>
               <FontAwesomeIcon className={cx('search-loadding')} icon={faSpinner} />
             </div>
             <span></span>
             <button className={cx('search-icon')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <SearchIcon />
             </button>
           </div>
         </HeadlessTippy>
 
         {/* right */}
         <div className={cx('header-right')}>
-          <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+          <Button text leftIcon={<UploadIcon />}>
             Up load
           </Button>
           {/* check log-in */}
@@ -155,12 +156,12 @@ function Header() {
             <div className={cx('user-current')}>
               <Tippy delay={[0, 200]} placement="bottom" content="Messages">
                 <span className={cx('user-message')}>
-                  <FontAwesomeIcon icon={faPaperPlane} />
+                  <MessageIcon />
                 </span>
               </Tippy>
               <Tippy delay={[0, 200]} placement="bottom" content="Inbox">
                 <span className={cx('user-inbox')}>
-                  <FontAwesomeIcon icon={faMessage} />
+                  <InboxIcon />
                 </span>
               </Tippy>
             </div>
@@ -176,7 +177,7 @@ function Header() {
               />
             ) : (
               <span className={cx('menu-icon')}>
-                <FontAwesomeIcon icon={faEllipsisVertical} />
+                <MenuIcon />
               </span>
             )}
           </Menu>

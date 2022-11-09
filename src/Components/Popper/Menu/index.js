@@ -49,6 +49,7 @@ function Menu({ children, menuItems = [], onActive = defaultFn }) {
 
   return (
     <Tippy
+      visible
       placement="bottom-end"
       offset={[12, 20]} //[độ lệch của điểm arrow, khoảng cách giữa tippy vs item]
       delay={[0, 700]} // delay =[show, hide]
