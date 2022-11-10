@@ -6,15 +6,10 @@ import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
 import { useEffect, useState } from 'react';
-
 // components
 import SearchResult from '~/Components/Popper/SearchResult';
 import Button from '~/Components/Button';
 import Menu from '~/Components/Popper/Menu';
-// SCSS module
-import style from './Header.module.scss';
-//assets-images
-import images, { LogoIcon } from '~/assets/images';
 import {
   DarkModeIcon,
   FeedbackAndHelpIcon,
@@ -32,6 +27,10 @@ import {
   UploadIcon,
   ViewProfileIcon,
 } from '~/Components/Icons';
+import Image from '~/Components/Images';
+import { LogoIcon } from '~/assets/images';
+// SCSS module
+import style from './Header.module.scss';
 
 const cx = classNames.bind(style);
 //-> Nếu không có ràng buộc này thì khi gọi class sẽ khó
@@ -98,7 +97,7 @@ const USER_MENU = [
   },
 ];
 
-const currentUser = false;
+const currentUser = true;
 
 // handleActiveItem
 function handleActiveItem(menuItems) {
@@ -170,11 +169,14 @@ function Header() {
           )}
           <Menu menuItems={currentUser ? USER_MENU : MENU_ITEMS} onActive={handleActiveItem}>
             {currentUser ? (
-              <img
-                className={cx('user-avatar')}
-                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8cf4fa65fd16b13e8d042e0379631773~c5_100x100.jpeg?x-expires=1667390400&x-signature=lGN2wBPorptyUxJgm4FOzqNcW3E%3D"
-                alt="huyenbaby"
-              />
+              <span className={cx('user-avatar')}>
+                <Image
+                  className={cx('avatar')}
+                  src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8cf4fa65fd16b13e8d042e0379631773~c5_100x100.jpeg?x-expires=1667390400&x-signature=lGN2wBPorptyUxJgm4FOzqNcW3E%3"
+                  alt="huyenbaby"
+                  fallBack="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b33abf2d0e2ddea25f9e33edefd9b82f~c5_100x100.jpeg?x-expires=1668254400&x-signature=gOuiZgN6OM%2Fh%2FKnUiQSbCdKyNkw%3D" //custom trường hợp nếu ảnh lỗi thì dùng ảnh này làm thay thế
+                />
+              </span>
             ) : (
               <span className={cx('menu-icon')}>
                 <MenuIcon />

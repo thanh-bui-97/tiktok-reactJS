@@ -1,5 +1,6 @@
 const images = {
   logo: require('~/assets/images/logo.svg').default, //tự mò cách sử dụng file svg đi
+  noImages: require('~/assets/images/NOimg.png'),
 };
 
 export const LogoIcon = ({ classNames, height = '42px', width = '118px' }) => {

@@ -122,10 +122,13 @@
 
 .user-avatar {
   height: 32px;
-  font-size: 32px;
   margin-left: 24px;
-  border-radius: 100%;
-  object-fit: cover;
   box-sizing: border-box;
   cursor: pointer;
+  .avatar {
+    border-radius: 100%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
