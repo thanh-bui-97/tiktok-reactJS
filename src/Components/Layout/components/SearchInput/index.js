@@ -12,6 +12,7 @@ import { SearchClearIcon, SearchIcon } from '~/Components/Icons';
 
 // SCSS module
 import style from './SeacrchInput.module.scss';
+import { useDebounce } from '~/Hooks';
 
 const cx = classNames.bind(style);
 
@@ -22,6 +23,7 @@ function SearchInput() {
   const [searchValues, setSearchValues] = useState('');
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
+  const debouncedValue = useDebounce(searchValues, 700); //kỹ thuật chỉ gửi request cuối
 
   function handleClearValues() {
     setSearchValues('');
@@ -33,13 +35,13 @@ function SearchInput() {
   }
 
   useEffect(() => {
-    if (!searchValues.trim()) {
+    if (!debouncedValue.trim()) {
       setSearchResult([]);
       return;
     }
     setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValues)}&type=less`)
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
         setLoading(false);
@@ -48,7 +50,7 @@ function SearchInput() {
       .catch(() => {
         setLoading(false);
       });
-  }, [searchValues]);
+  }, [debouncedValue]);
 
   return (
     <HeadlessTippy
