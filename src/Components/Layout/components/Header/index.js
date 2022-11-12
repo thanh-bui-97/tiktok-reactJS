@@ -1,13 +1,9 @@
 // Library
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
-import { useEffect, useState } from 'react';
+
 // components
-import SearchResult from '~/Components/Popper/SearchResult';
 import Button from '~/Components/Button';
 import Menu from '~/Components/Popper/Menu';
 import {
@@ -21,14 +17,14 @@ import {
   LogOutIcon,
   MenuIcon,
   MessageIcon,
-  SearchCloseIcon,
-  SearchIcon,
   SettingsIcon,
   UploadIcon,
   ViewProfileIcon,
 } from '~/Components/Icons';
 import Image from '~/Components/Images';
 import { LogoIcon } from '~/assets/images';
+import SearchInput from '../SearchInput';
+
 // SCSS module
 import style from './Header.module.scss';
 
@@ -105,13 +101,6 @@ function handleActiveItem(menuItems) {
 }
 
 function Header() {
-  // handle search results input
-  const [searchResult, setSearchResult] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    }, 0);
-  }, []);
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -120,30 +109,8 @@ function Header() {
           <LogoIcon />
         </div>
 
-        {/* middle */}
-        <HeadlessTippy
-          visible={searchResult.length > 0} //show/hide
-          interactive //interaction with tooltips contents
-          render={(attrs) => (
-            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-              <SearchResult />
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input placeholder="Search accounts and videos" spellCheck={false} />
-            <div>
-              <button className={cx('search-close')}>
-                <SearchCloseIcon />
-              </button>
-              <FontAwesomeIcon className={cx('search-loadding')} icon={faSpinner} />
-            </div>
-            <span></span>
-            <button className={cx('search-icon')}>
-              <SearchIcon />
-            </button>
-          </div>
-        </HeadlessTippy>
+        {/* middle: vì logic khu vực search xử lý độc lập, nên tách hẳn ra 1 component */}
+        <SearchInput />
 
         {/* right */}
         <div className={cx('header-right')}>
@@ -154,12 +121,12 @@ function Header() {
           {currentUser ? (
             <div className={cx('user-current')}>
               <Tippy delay={[0, 200]} placement="bottom" content="Messages">
-                <span className={cx('user-message')}>
+                <span count="15" className={cx('user-message')}>
                   <MessageIcon />
                 </span>
               </Tippy>
               <Tippy delay={[0, 200]} placement="bottom" content="Inbox">
-                <span className={cx('user-inbox')}>
+                <span count="10" className={cx('user-inbox')}>
                   <InboxIcon />
                 </span>
               </Tippy>

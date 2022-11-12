@@ -8,14 +8,13 @@ import style from './SearchResult.module.scss';
 
 const cx = classNames.bind(style);
 
-function SearchResult() {
+function SearchResult({ data }) {
   return (
     <Wrapper>
       <h4 className={cx('search-title')}>Accounts</h4>
-      <AccountItem />
-      <AccountItem />
-      <AccountItem />
-      <AccountItem />
+      {data.map((result) => (
+        <AccountItem key={result.id} data={result} />
+      ))}
     </Wrapper>
   );
 }
