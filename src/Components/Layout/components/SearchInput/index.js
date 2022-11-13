@@ -9,10 +9,11 @@ import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 import SearchResult from '~/Components/Popper/SearchResult';
 import { SearchClearIcon, SearchIcon } from '~/Components/Icons';
 import { useDebounce } from '~/hooks'; //hooks
-// Until
-import * as request from '~/untils/request'; //call API wtth axios
+// API
+
 // SCSS module
 import style from './SeacrchInput.module.scss';
+import * as searchService from '~/apiServices/searchService';
 
 const cx = classNames.bind(style);
 
@@ -39,23 +40,15 @@ function SearchInput() {
       setSearchResult([]);
       return;
     }
-    setLoading(true);
-
     // call API -->
     async function fetchApi() {
-      // xử lý lối của async/await the same then/catch: bỏ code vào trong try/catch
-      try {
-        const res = await request.get('users/search', {
-          params: {
-            q: debouncedValue,
-            type: 'less',
-          },
-        });
-        setLoading(false);
-        setSearchResult(res.data);
-      } catch (error) {
-        setLoading(false);
-      }
+      setLoading(true);
+
+      //searchService.search là hàm call API đã được tách ra
+      const result = await searchService.search(debouncedValue);
+      setSearchResult(result);
+
+      setLoading(false);
     }
     fetchApi();
   }, [debouncedValue]);
