@@ -5,14 +5,14 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
-
 // components
 import SearchResult from '~/Components/Popper/SearchResult';
 import { SearchClearIcon, SearchIcon } from '~/Components/Icons';
-
+import { useDebounce } from '~/hooks'; //hooks
+// Until
+import * as request from '~/untils/request'; //call API wtth axios
 // SCSS module
 import style from './SeacrchInput.module.scss';
-import { useDebounce } from '~/Hooks';
 
 const cx = classNames.bind(style);
 
@@ -41,15 +41,23 @@ function SearchInput() {
     }
     setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
-      .then((res) => res.json())
-      .then((res) => {
+    // call API -->
+    async function fetchApi() {
+      // xử lý lối của async/await the same then/catch: bỏ code vào trong try/catch
+      try {
+        const res = await request.get('users/search', {
+          params: {
+            q: debouncedValue,
+            type: 'less',
+          },
+        });
         setLoading(false);
         setSearchResult(res.data);
-      })
-      .catch(() => {
+      } catch (error) {
         setLoading(false);
-      });
+      }
+    }
+    fetchApi();
   }, [debouncedValue]);
 
   return (
