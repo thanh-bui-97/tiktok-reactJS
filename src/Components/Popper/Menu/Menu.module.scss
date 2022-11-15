@@ -1,22 +1,25 @@
-.menu-box {
+.menu--box {
   min-width: 223px;
   margin-top: -8px;
-  .menu-item {
-    width: 100%;
-    height: 42px;
-    font-size: 1.6rem;
-    line-height: 22px;
-    font-weight: 600;
-    margin-left: 0;
-    padding: 10px 8px 10px 16px;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 0;
-  }
+}
+.menu--body {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 // Menu Items
 .menu-item {
+  width: 100%;
+  height: 42px;
+  font-size: 1.6rem;
+  line-height: 22px;
+  font-weight: 600;
+  margin-left: 0;
+  padding: 10px 8px 10px 16px;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 0;
   &.separate {
     border-top: 1px solid rgba(22, 24, 35, 0.12);
   }
@@ -24,12 +27,12 @@
     background: rgba(22, 24, 35, 0.03);
   }
 }
-
 // Menu Header
 .menu--header {
   height: 50px;
   margin-top: -8px;
   position: relative;
+  flex-shrink: 0;
   .btn {
     width: 48px;
     height: 100%;

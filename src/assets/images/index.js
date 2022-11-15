@@ -3,7 +3,7 @@ const images = {
   noImages: require('~/assets/images/NOimg.png'),
 };
 
-export const LogoIcon = ({ classNames, height = '42px', width = '118px' }) => {
+export const LogoSvg = ({ classNames, height = '42px', width = '118px' }) => {
   return (
     <svg className={classNames} height={height} width={width} alt="TikTok" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0)">

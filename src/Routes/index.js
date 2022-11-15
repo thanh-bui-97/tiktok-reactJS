@@ -1,3 +1,5 @@
+// config router
+import routesConfig from '../config/routes';
 // Layouts
 import { DefaultLayout, HeaderOnly } from '~/Components/Layout';
 
@@ -10,11 +12,11 @@ import Search from '~/pages/Search/index.js';
 
 // Routes cho phép các page public, không cần đăng nhập cũng xem được
 const publicRoutes = [
-  { path: '/', component: Home, layout: DefaultLayout },
-  { path: '/following', component: Following, layout: DefaultLayout },
-  { path: '/@:name', component: Profile, layout: DefaultLayout }, //'/@:' là quy ước tìm theo key word, sau ':' là ký tự có thể thay đổi
-  { path: '/upload', component: Upload, layout: HeaderOnly },
-  { path: '/search', component: Search, layout: HeaderOnly },
+  { path: routesConfig.home, component: Home, layout: DefaultLayout },
+  { path: routesConfig.following, component: Following, layout: DefaultLayout },
+  { path: routesConfig.profile, component: Profile, layout: DefaultLayout }, //'/@:' là quy ước tìm theo key word, sau ':' là ký tự có thể thay đổi
+  { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
+  { path: routesConfig.search, component: Search, layout: HeaderOnly },
 ];
 
 // Routes này chỉ cho phép user đăng nhập mới xem được

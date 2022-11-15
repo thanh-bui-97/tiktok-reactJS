@@ -1,5 +1,4 @@
 // library
-import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,11 +9,9 @@ import SearchResult from '~/Components/Popper/SearchResult';
 import { SearchClearIcon, SearchIcon } from '~/Components/Icons';
 import { useDebounce } from '~/hooks'; //hooks
 // API
-
+import * as searchService from '~/apiServices/searchService';
 // SCSS module
 import style from './SeacrchInput.module.scss';
-import * as searchService from '~/apiServices/searchService';
-
 const cx = classNames.bind(style);
 
 function SearchInput() {
@@ -25,15 +22,6 @@ function SearchInput() {
   const [showResults, setShowResults] = useState(true);
   const [loading, setLoading] = useState(false);
   const debouncedValue = useDebounce(searchValues, 700); //kỹ thuật chỉ gửi request cuối
-
-  function handleClearValues() {
-    setSearchValues('');
-    setSearchResult([]);
-    inputRef.current.focus();
-  }
-  function handleClickOutside() {
-    setShowResults(false);
-  }
 
   useEffect(() => {
     if (!debouncedValue.trim()) {
@@ -53,43 +41,69 @@ function SearchInput() {
     fetchApi();
   }, [debouncedValue]);
 
+  function handleClearValues() {
+    setSearchValues('');
+    setSearchResult([]);
+    inputRef.current.focus();
+  }
+  function handleClickOutside() {
+    setShowResults(false);
+  }
+  function handleInputvalues(event) {
+    const inputValues = event.target.value;
+    // không cho phép nhập ký tự đầu tiên là nút space
+    if (!inputValues.startsWith(' ')) {
+      setSearchValues(event.target.value);
+    }
+  }
+
   return (
-    <HeadlessTippy
-      interactive //interaction with tooltips contents
-      onClickOutside={handleClickOutside}
-      visible={showResults && searchResult.length > 0} //2 dk show/hide: có results + onBlur
-      // --->render
-      render={(attrs) => (
-        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-          <SearchResult data={searchResult} />
+    // Tippy warnning: Using a wrapper <div> tag
+    // around the reference element solves this by creating a new parentNode context.
+    <div>
+      <HeadlessTippy
+        interactive //interaction with tooltips contents
+        onClickOutside={handleClickOutside}
+        visible={showResults && searchResult.length > 0} //2 dk show/hide: có results + onBlur
+        // --->render
+        render={(attrs) => (
+          <div className={cx('search--result')} tabIndex="-1" {...attrs}>
+            <SearchResult data={searchResult} />
+          </div>
+        )}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={inputRef}
+            value={searchValues}
+            placeholder="Search accounts and videos"
+            spellCheck={false}
+            onChange={handleInputvalues}
+            onFocus={() => setShowResults(true)}
+          />
+          <div>
+            {!loading && !!searchValues && (
+              <button onClick={handleClearValues} className={cx('search--clear')}>
+                <SearchClearIcon />
+              </button>
+            )}
+            {loading && <FontAwesomeIcon className={cx('search--loadding')} icon={faSpinner} />}
+          </div>
+          <span></span>
+          <button
+            className={cx('search--icon__link')}
+            to={`/search?lang=en&q=${encodeURIComponent(debouncedValue)}`}
+            onMouseDown={(event) => event.preventDefault()}
+          >
+            <SearchIcon
+              className={cx('icon', {
+                active: !!searchValues,
+              })}
+            />
+          </button>
         </div>
-      )}
-    >
-      <div className={cx('search')}>
-        <input
-          ref={inputRef}
-          value={searchValues}
-          placeholder="Search accounts and videos"
-          spellCheck={false}
-          onChange={(event) => {
-            setSearchValues(event.target.value);
-          }}
-          onFocus={() => setShowResults(true)}
-        />
-        <div>
-          {!loading && !!searchValues && (
-            <button onClick={handleClearValues} className={cx('search-clear')}>
-              <SearchClearIcon />
-            </button>
-          )}
-          {loading && <FontAwesomeIcon className={cx('search-loadding')} icon={faSpinner} />}
-        </div>
-        <span></span>
-        <Link to={`/search?lang=en&q=${encodeURIComponent(searchValues)}`} className={cx('search-icon')}>
-          <SearchIcon />
-        </Link>
-      </div>
-    </HeadlessTippy>
+      </HeadlessTippy>
+    </div>
   );
 }
 

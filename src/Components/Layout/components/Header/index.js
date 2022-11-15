@@ -2,7 +2,6 @@
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
-
 // components
 import Button from '~/Components/Button';
 import Menu from '~/Components/Popper/Menu';
@@ -22,12 +21,12 @@ import {
   ViewProfileIcon,
 } from '~/Components/Icons';
 import Image from '~/Components/Images';
-import { LogoIcon } from '~/assets/images';
+import { LogoSvg } from '~/assets/images';
 import SearchInput from '../SearchInput';
-
 // SCSS module
 import style from './Header.module.scss';
-
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 const cx = classNames.bind(style);
 //-> Nếu không có ràng buộc này thì khi gọi class sẽ khó
 // Vd: <h2 className={classNames(style['post-items'])}>Header</h2>;
@@ -105,9 +104,9 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         {/* left */}
-        <div className={cx('logo')}>
-          <LogoIcon />
-        </div>
+        <Link to={routesConfig.home} className={cx('logo')}>
+          <LogoSvg />
+        </Link>
 
         {/* middle: vì logic khu vực search xử lý độc lập, nên tách hẳn ra 1 component */}
         <SearchInput />
