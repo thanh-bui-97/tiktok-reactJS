@@ -2,7 +2,7 @@
 import classNames from 'classnames/bind';
 import style from './Menu.module.scss';
 // components
-import Button from '~/Components/Button';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(style);
 

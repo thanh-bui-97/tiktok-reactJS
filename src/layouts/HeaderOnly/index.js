@@ -1,4 +1,4 @@
-import Header from '~/Components/Layout/components/Header/index.js';
+import Header from '~/layouts/components/Header';
 
 // DefaultLayout chứa tất cả layout
 function HeaderOnly({ children }) {

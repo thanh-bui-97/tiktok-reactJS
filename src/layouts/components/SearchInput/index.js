@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 // components
-import SearchResult from '~/Components/Popper/SearchResult';
-import { SearchClearIcon, SearchIcon } from '~/Components/Icons';
+import SearchResult from '~/components/Popper/SearchResult';
+import { SearchClearIcon, SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks'; //hooks
 // API
-import * as searchService from '~/apiServices/searchService';
+import * as searchService from '~/services/searchService';
 // SCSS module
 import style from './SeacrchInput.module.scss';
 const cx = classNames.bind(style);
@@ -32,7 +32,7 @@ function SearchInput() {
     async function fetchApi() {
       setLoading(true);
 
-      //searchService.search là hàm call API đã được tách ra
+      //searchService.search() là hàm call API đã được tách ra
       const result = await searchService.search(debouncedValue);
       setSearchResult(result);
 

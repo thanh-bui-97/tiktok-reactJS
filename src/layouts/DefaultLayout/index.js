@@ -2,7 +2,7 @@
 import classNames from 'classnames/bind';
 
 // components
-import Header from '~/Components/Layout/components/Header';
+import Header from '~/layouts/components/Header';
 import Sidebar from './Sidebar/index.js';
 
 // CSS module

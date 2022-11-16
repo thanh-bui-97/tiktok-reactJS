@@ -1,7 +1,7 @@
 // library
 import classNames from 'classnames/bind';
 // Components
-import AccountItem from '~/Components/AccountItems';
+import AccountItem from '~/components/AccountItems';
 import Wrapper from '../Wrapper.js';
 // SCSS module
 import style from './SearchResult.module.scss';

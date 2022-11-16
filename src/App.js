@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes/index.js';
-// import { DefaultLayout } from '~/Components/Layout/DefaultLayout/index.js'; //kiểu này import cho newbie
-import { DefaultLayout } from '~/Components/Layout';
+// import { DefaultLayout } from '~/layouts/DefaultLayout/index.js'; //kiểu này import cho newbie
+import DefaultLayout from '~/layouts';
 
 function App() {
   return (

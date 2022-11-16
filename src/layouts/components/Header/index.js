@@ -1,10 +1,11 @@
 // Library
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
 // components
-import Button from '~/Components/Button';
-import Menu from '~/Components/Popper/Menu';
+import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
 import {
   DarkModeIcon,
   FeedbackAndHelpIcon,
@@ -19,14 +20,13 @@ import {
   SettingsIcon,
   UploadIcon,
   ViewProfileIcon,
-} from '~/Components/Icons';
-import Image from '~/Components/Images';
+} from '~/components/Icons';
+import Image from '~/components/Images';
 import { LogoSvg } from '~/assets/images';
 import SearchInput from '../SearchInput';
 // SCSS module
 import style from './Header.module.scss';
-import { Link } from 'react-router-dom';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 const cx = classNames.bind(style);
 //-> Nếu không có ràng buộc này thì khi gọi class sẽ khó
 // Vd: <h2 className={classNames(style['post-items'])}>Header</h2>;
@@ -104,7 +104,7 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         {/* left */}
-        <Link to={routesConfig.home} className={cx('logo')}>
+        <Link to={config.routes.home} className={cx('logo')}>
           <LogoSvg />
         </Link>
 
