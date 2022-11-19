@@ -1,9 +1,9 @@
 // library
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import style from './Menu.module.scss';
 // components
-import Button from '~/components/Button';
-
+import Button from '~/components/Button/Button';
 const cx = classNames.bind(style);
 
 function MenuItem({ itemData, onSelect }) {
@@ -17,5 +17,11 @@ function MenuItem({ itemData, onSelect }) {
     </Button>
   );
 }
+
+// set rules for props of components
+MenuItem.propTypes = {
+  itemData: PropTypes.object.isRequired,
+  onSelect: PropTypes.func,
+};
 
 export default MenuItem;

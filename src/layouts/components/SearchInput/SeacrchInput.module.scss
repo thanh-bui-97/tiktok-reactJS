@@ -15,12 +15,13 @@
   }
   input {
     font-family: var(--font-family);
-    background-color: transparent;
-    color: rgb(22, 24, 35);
-    caret-color: var(--primary);
     font-weight: 500;
     font-size: 1.6rem;
     line-height: 22px;
+    padding-right: 48px;
+    color: rgb(22, 24, 35);
+    background-color: transparent;
+    caret-color: var(--primary);
     flex: 1;
   }
   span {
@@ -39,8 +40,8 @@
   align-items: center;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   right: calc(var(--search-button-width) + 16px);
+  transform: translateY(-50%);
   color: rgba(22, 24, 35, 0.3);
 }
 
