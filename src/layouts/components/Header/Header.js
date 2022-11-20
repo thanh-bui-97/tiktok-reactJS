@@ -4,8 +4,11 @@ import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
 // components
-import Button from '~/components/Button/Button';
+import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import Image from '~/components/Images';
+import { LogoSvg } from '~/assets/images';
+import SearchInput from '~/layouts/components/Header/SearchInput';
 import {
   MoonIcon,
   CircleQuestion,
@@ -21,9 +24,7 @@ import {
   PlusIcon,
   ProfileIcon,
 } from '~/components/Icons';
-import Image from '~/components/Images';
-import { LogoSvg } from '~/assets/images';
-import SearchInput from '../SearchInput';
+
 // SCSS module
 import style from './Header.module.scss';
 import config from '~/config';

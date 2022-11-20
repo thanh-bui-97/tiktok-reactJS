@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 // Components
-import AccountItem from '~/components/AccountItems';
+import AccountItem from '~/layouts/components/Header/AccountItems';
 import Wrapper from '../Wrapper.js';
 // SCSS module
 import style from './SearchResult.module.scss';

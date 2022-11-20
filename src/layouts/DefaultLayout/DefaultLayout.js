@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 // components
 import Header from '~/layouts/components/Header';
-import Sidebar from '~/layouts/components/Sidebar';
+import Sidebar from '~/layouts/components/Container/Sidebar';
 
 // CSS module
 import style from './DefaultLayout.module.scss';

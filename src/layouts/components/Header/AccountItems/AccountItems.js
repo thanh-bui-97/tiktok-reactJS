@@ -5,10 +5,9 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 // components
-import Image from '../Images';
+import Image from '~/components/Images';
 // SCSS module
 import style from './AccountItems.module.scss';
-
 const cx = classNames.bind(style);
 
 function AccountItem({ data }) {
