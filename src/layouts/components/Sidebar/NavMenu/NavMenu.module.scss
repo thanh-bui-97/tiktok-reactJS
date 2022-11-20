@@ -1,0 +1,39 @@
+.wrapper {
+}
+.menu-item {
+  border: 1px solid #ddd;
+  height: 48px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  -webkit-transition: background-color ease-in-out 200ms;
+  transition: background-color ease-in-out 200ms;
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+  .icon-solid {
+    align-items: center;
+    display: none;
+  }
+  h2 {
+    margin-left: 8px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  // events
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+  &.active {
+    color: var(--primary);
+    .icon {
+      display: none;
+    }
+    .icon-solid {
+      display: flex;
+    }
+  }
+}

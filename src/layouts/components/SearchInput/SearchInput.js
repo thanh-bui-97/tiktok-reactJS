@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 // components
 import SearchResult from '~/components/Popper/SearchResult';
-import { SearchClearIcon, SearchIcon } from '~/components/Icons';
+import { XmarkIcon, MagnifyingIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks'; //hooks
 // API
 import * as searchService from '~/services/searchService';
@@ -87,7 +87,7 @@ function SearchInput() {
           <div>
             {!loading && !!searchValues && (
               <button onClick={handleClearValues} className={cx('search--clear')}>
-                <SearchClearIcon />
+                <XmarkIcon />
               </button>
             )}
             {loading && <FontAwesomeIcon className={cx('search--loadding')} icon={faSpinner} />}
@@ -98,7 +98,7 @@ function SearchInput() {
             to={`/search?lang=en&q=${encodeURIComponent(debouncedValue)}`}
             onMouseDown={(event) => event.preventDefault()}
           >
-            <SearchIcon
+            <MagnifyingIcon
               className={cx('icon', {
                 active: !!searchValues,
               })}

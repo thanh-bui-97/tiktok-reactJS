@@ -7,19 +7,19 @@ import 'tippy.js/dist/tippy.css';
 import Button from '~/components/Button/Button';
 import Menu from '~/components/Popper/Menu';
 import {
-  DarkModeIcon,
-  FeedbackAndHelpIcon,
-  GetCoinsIcon,
-  InboxIcon,
-  KeyboardShortcutsIcon,
+  MoonIcon,
+  CircleQuestion,
+  TikTokCoinIcon,
+  MessageMinusIcon,
+  KeyboardIcon,
   LanguagesIcon,
-  LIVEStudioIcon,
-  LogOutIcon,
-  MenuIcon,
-  MessageIcon,
-  SettingsIcon,
-  UploadIcon,
-  ViewProfileIcon,
+  CameraIcon,
+  ArrowRightFromBracket,
+  BarsIcon,
+  PaperPlaneIcon,
+  GearIcon,
+  PlusIcon,
+  ProfileIcon,
 } from '~/components/Icons';
 import Image from '~/components/Images';
 import { LogoSvg } from '~/assets/images';
@@ -47,16 +47,16 @@ const MENU_ITEMS = [
     },
   },
   {
-    icon: <FeedbackAndHelpIcon />,
+    icon: <CircleQuestion />,
     title: 'Feedback and Help',
     to: '/feedback',
   },
   {
-    icon: <KeyboardShortcutsIcon />,
+    icon: <KeyboardIcon />,
     title: 'Keyboard Shortcuts',
   },
   {
-    icon: <DarkModeIcon />,
+    icon: <MoonIcon />,
     title: 'Dark mode',
     to: '/feedback',
   },
@@ -64,28 +64,28 @@ const MENU_ITEMS = [
 
 const USER_MENU = [
   {
-    icon: <ViewProfileIcon />,
+    icon: <ProfileIcon />,
     title: 'View profile',
     to: '/profile',
   },
   {
-    icon: <GetCoinsIcon />,
+    icon: <TikTokCoinIcon />,
     title: 'Get Coins',
     to: '/coins',
   },
   {
-    icon: <LIVEStudioIcon />,
+    icon: <CameraIcon />,
     title: 'LIVE Studio',
     to: '/settings',
   },
   {
-    icon: <SettingsIcon />,
+    icon: <GearIcon />,
     title: 'Settings',
     to: '/feedback',
   },
   ...MENU_ITEMS,
   {
-    icon: <LogOutIcon />,
+    icon: <ArrowRightFromBracket />,
     title: 'Log out',
     to: '/feedback',
     separate: true,
@@ -113,7 +113,7 @@ function Header() {
 
         {/* right */}
         <div className={cx('header-right')}>
-          <Button text leftIcon={<UploadIcon />}>
+          <Button text leftIcon={<PlusIcon />}>
             Up load
           </Button>
           {/* check log-in */}
@@ -121,12 +121,12 @@ function Header() {
             <div className={cx('user-current')}>
               <Tippy delay={[0, 200]} placement="bottom" content="Messages">
                 <span count="15" className={cx('user-message')}>
-                  <MessageIcon />
+                  <PaperPlaneIcon />
                 </span>
               </Tippy>
               <Tippy delay={[0, 200]} placement="bottom" content="Inbox">
                 <span count="10" className={cx('user-inbox')}>
-                  <InboxIcon />
+                  <MessageMinusIcon />
                 </span>
               </Tippy>
             </div>
@@ -145,7 +145,7 @@ function Header() {
               </span>
             ) : (
               <span className={cx('menu-icon')}>
-                <MenuIcon />
+                <BarsIcon />
               </span>
             )}
           </Menu>
