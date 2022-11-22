@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useState } from 'react';
-// components
+// assets
 import images from '~/assets/images';
 // SCSS module
 import styles from './Images.module.scss';

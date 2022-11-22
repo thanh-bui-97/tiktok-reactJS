@@ -1,0 +1,70 @@
+.wrapper {
+  padding: 16px 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 0;
+    height: 1px;
+    background: rgba(22, 24, 35, 0.12);
+  }
+}
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 8px;
+  margin-bottom: 8px;
+  color: rgba(22, 24, 35, 0.75);
+}
+.account-item {
+  padding: 8px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  -webkit-transition: background-color ease-in-out 200ms;
+  transition: background-color ease-in-out 200ms;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+.nick-name {
+  color: rgb(22, 24, 35);
+  font-family: SofiaPro;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.check {
+  margin-left: 4px;
+  color: #20d5ec;
+}
+.full-name {
+  color: rgba(22, 24, 35, 0.75);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}
+.btn-show {
+  color: rgb(254, 44, 85);
+  padding: 0 8px;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
