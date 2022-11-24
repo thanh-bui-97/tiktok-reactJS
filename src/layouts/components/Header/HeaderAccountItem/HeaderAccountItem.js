@@ -6,10 +6,10 @@ import classNames from 'classnames/bind';
 import Image from '~/components/Images';
 import { CircleCheckSolidIcon } from '~/components/Icons';
 // SCSS module
-import style from './AccountItems.module.scss';
+import style from './HeaderAccountItem.module.scss';
 const cx = classNames.bind(style);
 
-function AccountItem({ data }) {
+function HeaderAccountItem({ data }) {
   return (
     <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
       <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />
@@ -25,8 +25,8 @@ function AccountItem({ data }) {
 }
 
 // set rules for props of components
-AccountItem.propTypes = {
+HeaderAccountItem.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default AccountItem;
+export default HeaderAccountItem;

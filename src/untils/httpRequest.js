@@ -3,6 +3,7 @@
 import axios from 'axios';
 
 const httpRequest = axios.create({
+  // REACT_APP_BASE_URL: là URL base được tạo từ file .env (môi trường)
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 

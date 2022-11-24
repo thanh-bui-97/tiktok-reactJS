@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 // components
-import Wrapper from '../Wrapper';
+import PopperWrapper from '../PopperWrapper';
 import MenuItem from './MenuItem';
 import MenuHeader from './MenuHeader';
 // SCSS module
@@ -53,10 +53,10 @@ function Menu({ children, menuItems = [], hideOnClick = false, onActive = defaul
   function renderMenuBox(attrs) {
     return (
       <div className={cx('menu--box')} tabIndex="-1" {...attrs}>
-        <Wrapper>
+        <PopperWrapper>
           {history.length > 1 && <MenuHeader onBack={handleBack} title={currentMenu.title} />}
           <div className={cx('menu--body')}>{renderMenuItems()}</div>
-        </Wrapper>
+        </PopperWrapper>
       </div>
     );
   }

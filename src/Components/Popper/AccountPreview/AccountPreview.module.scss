@@ -1,0 +1,56 @@
+.wrapper {
+  min-width: 320px;
+  padding: 12px 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.avatar {
+  height: 44px;
+  width: 44px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.follow-btn {
+  height: 34px;
+  width: 106px;
+  font-weight: 600;
+  border: none;
+}
+.body {
+}
+.nick-name {
+  font-family: SofiaPro;
+  color: rgb(22, 24, 35);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}
+.check {
+  margin-left: 4px;
+}
+.full-name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+.footer {
+  margin-top: 8px;
+}
+.number {
+  font-weight: 700;
+  margin-right: 6px;
+  font-size: 17px;
+  line-height: 20px;
+}
+.number ~ .number {
+  margin-left: 12px;
+}
+.label {
+  color: rgba(22, 24, 35, 0.75);
+  font-size: 17px;
+  line-height: 20px;
+}
