@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SidebarAccountItem from './SidebarAccountItem';
 import classNames from 'classnames/bind';
 // SCSS module
-import style from './SidebarAccountsList.module.scss';
+import style from './SidebarAccounts.module.scss';
 const cx = classNames.bind(style);
 
 function SidebarAccountsList({ label }) {

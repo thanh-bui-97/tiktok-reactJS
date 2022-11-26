@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import Image from '~/components/Images';
 import { CircleCheckSolidIcon } from '~/components/Icons';
 // SCSS module
-import style from './HeaderAccountItem.module.scss';
+import style from './HeaderAccounts.module.scss';
 const cx = classNames.bind(style);
 
 function HeaderAccountItem({ data }) {

@@ -25,7 +25,7 @@
 
   // events
   &:hover {
-    background-color: rgba(22, 24, 35, 0.03);
+    background-color: var(--hover-background-color);
   }
   &.active {
     color: var(--primary);

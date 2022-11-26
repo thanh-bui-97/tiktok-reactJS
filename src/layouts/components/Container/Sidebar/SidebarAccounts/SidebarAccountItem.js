@@ -5,7 +5,7 @@ import { CircleCheckSolidIcon } from '~/components/Icons';
 import Images from '~/components/Images';
 import AccountPreview from '~/components/Popper/AccountPreview';
 // SCSS module
-import style from './SidebarAccountsList.module.scss';
+import style from './SidebarAccounts.module.scss';
 const cx = classNames.bind(style);
 
 function SidebarAccountItem() {

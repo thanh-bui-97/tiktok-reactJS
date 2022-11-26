@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 // Components
-import HeaderAccountItem from '~/layouts/components/Header/HeaderAccountItem';
+import HeaderAccountItem from '~/layouts/components/Header/HeaderAccounts';
 import PopperWrapper from '../PopperWrapper.js';
 // SCSS module
 import style from './SearchResult.module.scss';

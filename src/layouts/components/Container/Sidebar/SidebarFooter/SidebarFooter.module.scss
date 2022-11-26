@@ -1,0 +1,31 @@
+.wrapper {
+  padding: 16px 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 0;
+    height: 1px;
+    background: rgba(22, 24, 35, 0.12);
+  }
+}
+.group,
+.copy-right {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+  display: flex;
+  flex-wrap: wrap;
+  color: rgba(22, 24, 35, 0.5);
+}
+.group {
+  a {
+    margin: 5px 6px 0 0;
+    color: rgba(22, 24, 35, 0.5);
+    cursor: pointer;
+  }
+}
