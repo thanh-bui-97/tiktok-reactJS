@@ -5,15 +5,15 @@ import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 // components
 import PopperWrapper from '../PopperWrapper';
-import MenuItem from './MenuItem';
-import MenuHeader from './MenuHeader';
+import SettingItem from './SettingItem';
+import SettingHeader from './SettingHeader';
 // SCSS module
-import style from './Menu.module.scss';
+import style from './Setting.module.scss';
 const cx = classNames.bind(style);
 // ------------------------------------------------------------------------------------------------
 
 function defaultFn() {}
-function Menu({ children, menuItems = [], hideOnClick = false, onActive = defaultFn }) {
+function Setting({ children, menuItems = [], hideOnClick = false, onActive = defaultFn }) {
   //idea: mỗi lần setState là thay đổi menu (gồm các menu items), nên state là 1 array, setState là set lại array khác (add/remove child array)
   // history+n = [{data: menuItems}, {title: "children 1", data: menuItems}...]
   const [history, setHistory] = useState([{ data: menuItems }]);
@@ -44,7 +44,7 @@ function Menu({ children, menuItems = [], hideOnClick = false, onActive = defaul
 
       return (
         <div key={index}>
-          <MenuItem key={index} itemData={item} onSelect={handleSelectItem} />
+          <SettingItem key={index} itemData={item} onSelect={handleSelectItem} />
         </div>
       );
     });
@@ -54,7 +54,7 @@ function Menu({ children, menuItems = [], hideOnClick = false, onActive = defaul
     return (
       <div className={cx('menu--box')} tabIndex="-1" {...attrs}>
         <PopperWrapper>
-          {history.length > 1 && <MenuHeader onBack={handleBack} title={currentMenu.title} />}
+          {history.length > 1 && <SettingHeader onBack={handleBack} title={currentMenu.title} />}
           <div className={cx('menu--body')}>{renderMenuItems()}</div>
         </PopperWrapper>
       </div>
@@ -77,11 +77,11 @@ function Menu({ children, menuItems = [], hideOnClick = false, onActive = defaul
 }
 
 // set rules for props of components
-Menu.propTypes = {
+Setting.propTypes = {
   children: PropTypes.node.isRequired,
   menuItems: PropTypes.array,
   hideOnClick: PropTypes.bool,
   onActive: PropTypes.func,
 };
 
-export default Menu;
+export default Setting;

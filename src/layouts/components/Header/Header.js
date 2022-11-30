@@ -5,7 +5,7 @@ import Tippy from '@tippyjs/react'; //Làm tooltip
 import 'tippy.js/dist/tippy.css';
 // components
 import Button from '~/components/Button';
-import Menu from '~/components/Popper/Menu';
+import Setting from '~/components/Popper/Setting';
 import Image from '~/components/Images';
 import { LogoSvg } from '~/assets/images';
 import SearchInput from '~/layouts/components/Header/SearchInput';
@@ -134,7 +134,7 @@ function Header() {
           ) : (
             <Button primary>Log in</Button>
           )}
-          <Menu menuItems={currentUser ? USER_MENU : MENU_ITEMS} onActive={handleActiveItem}>
+          <Setting menuItems={currentUser ? USER_MENU : MENU_ITEMS} onActive={handleActiveItem}>
             {currentUser ? (
               <span className={cx('user-avatar')}>
                 <Image
@@ -149,7 +149,7 @@ function Header() {
                 <BarsIcon />
               </span>
             )}
-          </Menu>
+          </Setting>
         </div>
       </div>
     </header>

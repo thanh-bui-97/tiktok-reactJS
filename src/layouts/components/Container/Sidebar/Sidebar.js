@@ -5,9 +5,11 @@ import NavMenu from './NavMenu';
 import SidebarAccountsList from './SidebarAccounts';
 import Hashtag from './Hashtags/Hashtags';
 import SidebarFooter from './SidebarFooter';
+
 // SCSS module
 import style from './Sidebar.module.scss';
 import config from '~/config';
+import SidebarLogin from './SidebarLogin';
 const cx = classNames.bind(style);
 
 const USER_HASHTAG_LIST = [
@@ -51,8 +53,9 @@ function Sidebar() {
   return (
     <aside className={cx('wrapper')}>
       <NavMenu />
+      <SidebarLogin label="Log in to follow creators, like videos, and view comments." />
       <SidebarAccountsList label="Suggested accounts" />
-      <SidebarAccountsList label="Following accounts" />
+      {/* <SidebarAccountsList label="Following accounts" /> */}
       <Hashtag hashtagList={USER_HASHTAG_LIST} />
       <SidebarFooter
         companyData={FOOTER_DATA_COMPANY}
