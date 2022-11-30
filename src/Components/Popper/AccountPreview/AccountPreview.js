@@ -11,34 +11,32 @@ import { CircleCheckSolidIcon } from '~/components/Icons';
 import style from './AccountPreview.module.scss';
 const cx = classNames.bind(style);
 
-function AccountPreview({ children }) {
+function AccountPreview({ children, avatar, nickname, firstName, lastName, tick, likes, followers }) {
   function accountPreviewBox(props) {
     return (
       <PopperWrapper>
         <div className={cx('wrapper')} tabIndex="-1" {...props}>
           <header className={cx('header')}>
-            <Images
-              className={cx('avatar')}
-              src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1669208400&x-signature=YKRWKhTajszR9KGf7sYPs%2FE4MwQ%3D"
-              alt=""
-            />
+            <Images className={cx('avatar')} src={avatar} alt={nickname} />
             <Button primary className={cx('follow-btn')}>
               Follow
             </Button>
           </header>
           <section className={cx('body')}>
             <h4 className={cx('nick-name')}>
-              theanh28entertainment
-              <span className={cx('check')}>
-                <CircleCheckSolidIcon />
-              </span>
+              {nickname}
+              {tick && (
+                <span className={cx('check')}>
+                  <CircleCheckSolidIcon />
+                </span>
+              )}
             </h4>
-            <p className={cx('full-name')}>Theanh28 Entertainment</p>
+            <p className={cx('full-name')}>{lastName + ' ' + firstName}</p>
           </section>
           <footer className={cx('footer')}>
-            <span className={cx('number')}>8.15M</span>
+            <span className={cx('number')}>{followers}</span>
             <span className={cx('label')}>Followers</span>
-            <span className={cx('number')}>700.17M</span>
+            <span className={cx('number')}>{likes}</span>
             <span className={cx('label')}>Likes</span>
           </footer>
         </div>
@@ -57,6 +55,13 @@ function AccountPreview({ children }) {
 // set rules for props of component
 AccountPreview.propTypes = {
   children: PropTypes.node.isRequired,
+  avatar: PropTypes.string,
+  nickname: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  tick: PropTypes.bool,
+  likes: PropTypes.number,
+  followers: PropTypes.number,
 };
 
 export default AccountPreview;

@@ -4,11 +4,12 @@
 import * as httpRequest from '~/untils/httpRequest'; //call API wtth axios
 
 export async function search(q, type = 'less') {
-  //q:query,
+  //chú ý giữ nguyên trạng thái ký tự của URL
   // xử lý lối của async/await the same then/catch: bỏ code vào trong try/catch
   try {
     const res = await httpRequest.get('users/search', {
-      // .get('path after baseURL')
+      // Full URL: BaseURL/api/users/search?q=f&type=less
+      // params is "q=f&type=less" === "key1=value1 & key2=value2"
       params: {
         q,
         type,

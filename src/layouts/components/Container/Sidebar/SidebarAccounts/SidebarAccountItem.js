@@ -1,4 +1,5 @@
 // library
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 // components
 import { CircleCheckSolidIcon } from '~/components/Icons';
@@ -8,27 +9,38 @@ import AccountPreview from '~/components/Popper/AccountPreview';
 import style from './SidebarAccounts.module.scss';
 const cx = classNames.bind(style);
 
-function SidebarAccountItem() {
+function SidebarAccountItem({ suggAccInfors }) {
   return (
-    <AccountPreview>
+    <AccountPreview
+      avatar={suggAccInfors.avatar}
+      nickname={suggAccInfors.nickname}
+      firstName={suggAccInfors.first_name}
+      lastName={suggAccInfors.last_name}
+      tick={suggAccInfors.tick}
+      likes={suggAccInfors.likes_count}
+      followers={suggAccInfors.followers_count}
+    >
       <div className={cx('account-item')}>
-        <Images
-          className={cx('avatar')}
-          src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-aiso/65d3c6b1d1e205c75536ccf1f26d552d~c5_100x100.jpeg?x-expires=1669208400&x-signature=YKRWKhTajszR9KGf7sYPs%2FE4MwQ%3D"
-          alt=""
-        />
+        <Images className={cx('avatar')} src={suggAccInfors.avatar} alt={suggAccInfors.nickname} />
         <div>
           <h4 className={cx('nick-name')}>
-            theanh28entertainment
-            <span className={cx('check')}>
-              <CircleCheckSolidIcon />
-            </span>
+            {suggAccInfors.nickname}
+            {suggAccInfors.tick && (
+              <span className={cx('check')}>
+                <CircleCheckSolidIcon />
+              </span>
+            )}
           </h4>
-          <p className={cx('full-name')}>Theanh28 Entertainment</p>
+          <p className={cx('full-name')}>{suggAccInfors.last_name + ' ' + suggAccInfors.first_name}</p>
         </div>
       </div>
     </AccountPreview>
   );
 }
+
+// set rules for props of components
+SidebarAccountItem.propTypes = {
+  suggAccInfors: PropTypes.object.isRequired,
+};
 
 export default SidebarAccountItem;
