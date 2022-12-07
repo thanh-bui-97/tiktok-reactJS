@@ -48,14 +48,17 @@ const FOOTER_DATA_POLICIES = [
   { title: 'Creator Potal', to: config.routes.about },
   { title: 'Community Guidelines', to: config.routes.about },
 ];
+const currentUser = true;
 
 function Sidebar() {
   return (
     <aside className={cx('wrapper')}>
       <NavMenu />
-      <SidebarLogin label="Log in to follow creators, like videos, and view comments." />
+      {!currentUser && <SidebarLogin label="Log in to follow creators, like videos, and view comments." />}
+
       <SidebarAccountsList label="Suggested accounts" />
-      {/* <SidebarAccountsList label="Following accounts" /> */}
+      {currentUser && <SidebarAccountsList label="Following accounts" currentUser={currentUser} />}
+
       <Hashtag hashtagList={USER_HASHTAG_LIST} />
       <SidebarFooter
         companyData={FOOTER_DATA_COMPANY}

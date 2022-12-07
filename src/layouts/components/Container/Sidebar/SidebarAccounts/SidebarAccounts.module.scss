@@ -66,5 +66,13 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
+  display: flex;
   cursor: pointer;
+}
+.following-empty {
+  color: rgba(22, 24, 35, 0.5);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0 8px;
 }

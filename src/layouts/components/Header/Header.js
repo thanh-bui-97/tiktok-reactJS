@@ -40,7 +40,7 @@ const MENU_ITEMS = [
     icon: <LanguagesIcon />,
     title: 'English',
     childsMenu: {
-      title: 'Languages 123',
+      title: 'Languages',
       data: [
         { code: 'en', title: 'English' },
         { code: 'vi', title: 'Tiếng Việt' },
