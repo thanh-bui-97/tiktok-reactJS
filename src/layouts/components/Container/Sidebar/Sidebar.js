@@ -1,15 +1,16 @@
 // library
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 // components
 import NavMenu from './NavMenu';
 import SidebarAccountsList from './SidebarAccounts';
 import Hashtag from './Hashtags/Hashtags';
 import SidebarFooter from './SidebarFooter';
-
+import SidebarLogin from './SidebarLogin';
+// config routes
+import config from '~/config';
 // SCSS module
 import style from './Sidebar.module.scss';
-import config from '~/config';
-import SidebarLogin from './SidebarLogin';
 const cx = classNames.bind(style);
 
 const USER_HASHTAG_LIST = [
@@ -48,13 +49,19 @@ const FOOTER_DATA_POLICIES = [
   { title: 'Creator Potal', to: config.routes.about },
   { title: 'Community Guidelines', to: config.routes.about },
 ];
-const currentUser = true;
+const currentUser = false;
 
-function Sidebar() {
+const defaultFtn = () => {};
+function Sidebar({ _onShowAuthen = defaultFtn }) {
+  function onShowAuthen(isShowAuthen) {
+    _onShowAuthen(isShowAuthen);
+  }
   return (
     <aside className={cx('wrapper')}>
       <NavMenu />
-      {!currentUser && <SidebarLogin label="Log in to follow creators, like videos, and view comments." />}
+      {!currentUser && (
+        <SidebarLogin label="Log in to follow creators, like videos, and view comments." onShowAuthen={onShowAuthen} />
+      )}
 
       <SidebarAccountsList label="Suggested accounts" />
       {currentUser && <SidebarAccountsList label="Following accounts" currentUser={currentUser} />}
@@ -68,5 +75,10 @@ function Sidebar() {
     </aside>
   );
 }
+
+// set rules for props of components
+Sidebar.propTypes = {
+  _onShowAuthen: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

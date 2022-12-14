@@ -7,11 +7,12 @@ import Button from '~/components/Button';
 import style from './SidebarLogin.module.scss';
 const cx = classNames.bind(style);
 
-function SidebarLogin({ label }) {
+const defaultFtn = () => {};
+function SidebarLogin({ label, onShowAuthen = defaultFtn }) {
   return (
     <section className={cx('wrapper')}>
       <h4 className={cx('label')}>{label}</h4>
-      <Button outline large className={cx('login--btn')}>
+      <Button outline large className={cx('login--btn')} onClick={() => onShowAuthen(true)}>
         Log in
       </Button>
     </section>
@@ -20,7 +21,8 @@ function SidebarLogin({ label }) {
 
 // set rules for props of components
 SidebarLogin.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  onShowAuthen: PropTypes.func.isRequired,
 };
 
 export default SidebarLogin;

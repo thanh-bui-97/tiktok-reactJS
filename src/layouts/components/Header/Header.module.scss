@@ -9,17 +9,20 @@
   position: fixed;
   top: 0;
   left: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
   background-color: white;
-  z-index: 10;
+  z-index: 9;
 }
 .inner {
   height: var(--default-layout-header-height);
   width: var(--default-layout-width);
   padding: 0 var(--default-layout-horizontal-padding);
+
   display: flex;
   justify-content: space-between;
   align-items: center;

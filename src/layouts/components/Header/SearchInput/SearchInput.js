@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless'; //Làm tooltip
 // components
 import SearchResult from '~/components/Popper/SearchResult';
-import { XmarkIcon, MagnifyingIcon } from '~/components/Icons';
+import { XmarkSolidIcon, MagnifyingIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks'; //hooks
 // API
 import * as searchService from '~/services/searchService';
@@ -87,7 +87,7 @@ function SearchInput() {
           <div>
             {!loading && !!searchValues && (
               <button onClick={handleClearValues} className={cx('search--clear')}>
-                <XmarkIcon />
+                <XmarkSolidIcon />
               </button>
             )}
             {loading && <FontAwesomeIcon className={cx('search--loadding')} icon={faSpinner} />}

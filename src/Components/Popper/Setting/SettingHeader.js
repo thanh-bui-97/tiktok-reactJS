@@ -1,10 +1,9 @@
 // library
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 // components
 import style from './Setting.module.scss';
+import { ChevronLeftIcon } from '../../Icons';
 
 const cx = classNames.bind(style);
 
@@ -12,7 +11,7 @@ function SettingHeader({ title, onBack }) {
   return (
     <header className={cx('menu--header')}>
       <button className={cx('btn')} onClick={onBack}>
-        <FontAwesomeIcon icon={faChevronLeft} />
+        <ChevronLeftIcon />
       </button>
       <h4 className={cx('title')}>{title}</h4>
     </header>

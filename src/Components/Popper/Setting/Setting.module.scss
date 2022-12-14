@@ -48,6 +48,11 @@
   }
 }
 .btn {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     background: var(--hover-background-color);
   }

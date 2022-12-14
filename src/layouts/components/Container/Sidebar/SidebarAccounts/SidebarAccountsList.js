@@ -57,10 +57,10 @@ function SidebarAccountsList({ label, currentUser = false }) {
   }, [showAllAccounts]);
 
   function handleShowAll() {
-    setShowAllAccounts(false);
+    setShowAllAccounts(true);
   }
   function handleShowLess() {
-    setShowAllAccounts(true);
+    setShowAllAccounts(false);
   }
   return (
     <section className={cx('wrapper')}>
@@ -82,14 +82,14 @@ function SidebarAccountsList({ label, currentUser = false }) {
       )}
 
       {/* See all btn */}
-      {(followingAccs.length > 0 || suggestedAccs.length > 0) && showAllAccounts && (
+      {(followingAccs.length > 0 || suggestedAccs.length > 0) && !showAllAccounts && (
         <span onClick={handleShowAll} className={cx('btn-show')}>
           See all
         </span>
       )}
 
       {/* See less btn */}
-      {(followingAccs.length > 0 || suggestedAccs.length > 0) && !showAllAccounts && (
+      {(followingAccs.length > 0 || suggestedAccs.length > 0) && showAllAccounts && (
         <span onClick={handleShowLess} className={cx('btn-show')}>
           See less
         </span>
