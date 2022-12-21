@@ -1,4 +1,4 @@
-// library
+// libraries
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,9 +1,14 @@
+// libraries
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import style from './Hashtags.module.scss';
-import { HashtagIcon, MusicIcon } from '~/components/Icons';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
+// components
+import { HashtagIcon, MusicIcon } from '~/components/Icons';
+// config
 import config from '~/config';
+// SCSS module
+import style from './Hashtags.module.scss';
 const cx = classNames.bind(style);
 
 function Hashtags({ hashtagList = [] }) {
@@ -46,4 +51,4 @@ Hashtags.propTypes = {
   hashtagList: PropTypes.array.isRequired,
 };
 
-export default Hashtags;
+export default memo(Hashtags);

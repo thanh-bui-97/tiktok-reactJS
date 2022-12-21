@@ -1,5 +1,6 @@
-// library
+// libraries
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 // components
 import NavMenu from './NavMenu';
@@ -51,11 +52,8 @@ const FOOTER_DATA_POLICIES = [
 ];
 const currentUser = false;
 
-const defaultFtn = () => {};
-function Sidebar({ _onShowAuthen = defaultFtn }) {
-  function onShowAuthen(isShowAuthen) {
-    _onShowAuthen(isShowAuthen);
-  }
+function defaultFtn() {}
+function Sidebar({ onShowAuthen = defaultFtn }) {
   return (
     <aside className={cx('wrapper')}>
       <NavMenu />
@@ -78,7 +76,7 @@ function Sidebar({ _onShowAuthen = defaultFtn }) {
 
 // set rules for props of components
 Sidebar.propTypes = {
-  _onShowAuthen: PropTypes.func.isRequired,
+  onShowAuthen: PropTypes.func.isRequired,
 };
 
-export default Sidebar;
+export default memo(Sidebar);

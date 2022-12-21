@@ -1,4 +1,5 @@
-// library
+// libraries
+import { memo } from 'react';
 import classNames from 'classnames/bind';
 // components
 import NavMenuItem from './NavMenuItem';
@@ -31,4 +32,4 @@ function NavMenu() {
   );
 }
 
-export default NavMenu;
+export default memo(NavMenu);

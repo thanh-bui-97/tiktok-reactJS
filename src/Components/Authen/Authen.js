@@ -1,6 +1,8 @@
-// library
+// libraries
+import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 // commponents
 import {
@@ -52,7 +54,9 @@ const SIGNUP_APPS = {
     { discrips: 'Continue with KakaoTalk ', icon: <KakaoTalkIcon /> },
   ],
 };
-function Authen() {
+
+function defaultFtn() {}
+function Authen({ onHideAuthen = defaultFtn, triggerClasses }) {
   const [signUpMode, setSignUpMode] = useState(false);
 
   function onSignUp() {
@@ -61,52 +65,57 @@ function Authen() {
   function onLogIn() {
     setSignUpMode(false);
   }
-  return (
-    <div>
-      <article className={cx('overlay')}>
-        <section className={cx('authen')}>
-          {/* authen body */}
-          <section className={cx('authen--body')}>
-            <div className={cx('container')}>
-              <AuthenType signUpMode={signUpMode} appData={signUpMode ? SIGNUP_APPS : LOGIN_APPS} />
-            </div>
-          </section>
-
-          {/* Login-policy */}
-          {signUpMode && (
-            <section className={cx('authen--policy')}>
-              <p className={cx('text')}>
-                By continuing, you agree to TikTok's <Link to={config.routes.about}>Terms of Service</Link> and confirm
-                that you have read TikTok's <Link to={config.routes.about}>Privacy Policy</Link>.
-              </p>
-            </section>
-          )}
-
-          {/* authen footer */}
-          {signUpMode ? (
-            <footer className={cx('authen--footer')}>
-              <p>Already have an account?</p>
-              <span onClick={onLogIn} className={cx('sign--btn')}>
-                Log in
-              </span>
-            </footer>
-          ) : (
-            <footer className={cx('authen--footer')}>
-              <p>Don't have an account?</p>
-              <span onClick={onSignUp} className={cx('sign--btn')}>
-                Sign up
-              </span>
-            </footer>
-          )}
-
-          {/* Close btn */}
-          <span className={cx('authen--close')}>
-            <XmarkIcon />
-          </span>
+  return createPortal(
+    <article className={cx('backdrop', { [triggerClasses]: true })}>
+      <dialog className={cx('authen', { [triggerClasses]: true })}>
+        {/* authen body */}
+        <section className={cx('authen--body')}>
+          <div className={cx('container')}>
+            <AuthenType signUpMode={signUpMode} appData={signUpMode ? SIGNUP_APPS : LOGIN_APPS} />
+          </div>
         </section>
-      </article>
-    </div>
+
+        {/* Login-policy */}
+        {signUpMode && (
+          <section className={cx('authen--policy')}>
+            <p className={cx('text')}>
+              By continuing, you agree to TikTok's <Link to={config.routes.about}>Terms of Service</Link> and confirm
+              that you have read TikTok's <Link to={config.routes.about}>Privacy Policy</Link>.
+            </p>
+          </section>
+        )}
+
+        {/* authen footer */}
+        {signUpMode ? (
+          <footer className={cx('authen--footer')}>
+            <p>Already have an account?</p>
+            <span onClick={onLogIn} className={cx('sign--btn')}>
+              Log in
+            </span>
+          </footer>
+        ) : (
+          <footer className={cx('authen--footer')}>
+            <p>Don't have an account?</p>
+            <span onClick={onSignUp} className={cx('sign--btn')}>
+              Sign up
+            </span>
+          </footer>
+        )}
+
+        {/* Close btn */}
+        <span onClick={onHideAuthen} className={cx('authen--close')}>
+          <XmarkIcon />
+        </span>
+      </dialog>
+    </article>,
+    document.body,
   );
 }
 
-export default Authen;
+// set rules for props of components
+Authen.propTypes = {
+  onHideAuthen: PropTypes.func.isRequired,
+  triggerClasses: PropTypes.string.isRequired,
+};
+
+export default memo(Authen);

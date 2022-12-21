@@ -1,4 +1,4 @@
-// library
+// libraries
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 // SCSS module

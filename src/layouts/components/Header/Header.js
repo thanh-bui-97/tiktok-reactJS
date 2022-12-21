@@ -1,4 +1,6 @@
-// Library
+// libraries
+import PropTypes from 'prop-types';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind'; //Hỗ trợ đặt classNames
 import Tippy from '@tippyjs/react'; //Làm tooltip
@@ -93,14 +95,15 @@ const USER_MENU = [
   },
 ];
 
-const currentUser = true;
+const currentUser = false;
 
 // handleActiveItem
 function handleActiveItem(menuItems) {
   console.log(menuItems);
 }
 
-function Header() {
+function defaultFtn() {}
+function Header({ onShowAuthen = defaultFtn }) {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -132,7 +135,9 @@ function Header() {
               </Tippy>
             </div>
           ) : (
-            <Button primary>Log in</Button>
+            <Button onClick={() => onShowAuthen(true)} primary>
+              Log in
+            </Button>
           )}
           <Setting menuItems={currentUser ? USER_MENU : MENU_ITEMS} onActive={handleActiveItem}>
             {currentUser ? (
@@ -156,4 +161,9 @@ function Header() {
   );
 }
 
-export default Header;
+// set rules for props of components
+Header.propTypes = {
+  onShowAuthen: PropTypes.func.isRequired,
+};
+
+export default memo(Header);

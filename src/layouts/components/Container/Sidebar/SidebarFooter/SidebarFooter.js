@@ -1,6 +1,9 @@
+// libraries
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { memo } from 'react';
+// SCSS module config
 import style from './SidebarFooter.module.scss';
 const cx = classNames.bind(style);
 
@@ -70,4 +73,4 @@ SidebarFooter.propTypes = {
   policiesData: PropTypes.array.isRequired,
 };
 
-export default SidebarFooter;
+export default memo(SidebarFooter);
