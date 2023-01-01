@@ -20,14 +20,14 @@ const cx = classNames.bind(style);
 function NavMenu() {
   return (
     <nav className={cx('wrapper')}>
-      <NavMenuItem title={'For You'} icon={<HomeIcon />} iconSolid={<HomeSolidIcon />} to={config.routes.home} />
+      <NavMenuItem title={'For You'} icon={<HomeIcon />} iconSolid={<HomeSolidIcon />} to={config.routes.homePage} />
       <NavMenuItem
         title={'Following'}
         icon={<UsersGroupIcon />}
         iconSolid={<UsersGroupSolidIcon />}
-        to={config.routes.following}
+        to={config.routes.followingPage}
       />
-      <NavMenuItem title={'LIVE'} icon={<LiveIcon />} iconSolid={<LiveSolidIcon />} to={config.routes.live} />
+      <NavMenuItem title={'LIVE'} icon={<LiveIcon />} iconSolid={<LiveSolidIcon />} to={config.routes.livePage} />
     </nav>
   );
 }

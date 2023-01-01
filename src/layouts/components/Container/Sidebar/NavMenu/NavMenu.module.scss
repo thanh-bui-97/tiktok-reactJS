@@ -3,6 +3,7 @@
 }
 .menu-item {
   height: 48px;
+  width: calc(100% + 5px);
   padding: 8px;
   display: flex;
   align-items: center;

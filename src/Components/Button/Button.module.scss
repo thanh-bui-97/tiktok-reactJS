@@ -1,19 +1,20 @@
 // base = primary
 .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-family: var(--font-family);
   font-size: 1.6rem;
   font-weight: 700;
   min-width: 100px;
-  height: 36px;
+  min-height: 36px;
   padding: 6px 8px;
   border-radius: 4px;
   background: white;
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
 
   //trường hợp 2 nút liên tiếp
   + .wrapper {
@@ -39,14 +40,14 @@
   //border red
   font-weight: 600;
   color: rgba(254, 44, 85, 1);
-  border-color: currentColor;
+  border: 1px solid currentColor;
 
   &:hover {
     background-color: rgba(254, 44, 85, 0.06);
   }
 }
 .text {
-  //no color
+  //no color and no background color
   padding: 0 16px;
   border: 1px solid rgba(22, 24, 35, 0.12);
 
@@ -55,6 +56,7 @@
   }
 }
 .router {
+  // Download
   font-size: 1.4rem;
   color: rgba(22, 24, 35, 0.75);
   padding: 0 8px;
@@ -69,15 +71,27 @@
     background-color: rgba(255, 255, 255, 1);
   }
 }
+.iconOnly {
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 16px;
+  border-radius: 100%;
+}
+
 // button sizes
 .small {
   width: 88px;
-  height: 28px;
+  height: 28px !important;
   padding: 0 10px;
 }
+.medium {
+  min-height: 32px !important;
+  padding: 0 8px;
+  line-height: 30px;
+}
 .large {
-  min-width: 140px;
-  min-height: 48px;
+  min-width: 140px !important;
+  min-height: 48px !important;
   padding: 6px 8px;
 }
 
@@ -89,6 +103,12 @@
   width: 20px;
   height: 20px;
   font-size: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -16,7 +16,7 @@ import {
   QrCodeIcon,
   TwitterIcon,
   XmarkIcon,
-} from '../Icons';
+} from '~/components/Icons';
 import AuthenType from './AuthenType';
 // config
 import config from '~/config';
@@ -67,7 +67,7 @@ function Authen({ onHideAuthen = defaultFtn, triggerClasses }) {
   }
   return createPortal(
     <article className={cx('backdrop', { [triggerClasses]: true })}>
-      <dialog className={cx('authen', { [triggerClasses]: true })}>
+      <section className={cx('authen', { [triggerClasses]: true })}>
         {/* authen body */}
         <section className={cx('authen--body')}>
           <div className={cx('container')}>
@@ -106,7 +106,7 @@ function Authen({ onHideAuthen = defaultFtn, triggerClasses }) {
         <span onClick={onHideAuthen} className={cx('authen--close')}>
           <XmarkIcon />
         </span>
-      </dialog>
+      </section>
     </article>,
     document.body,
   );

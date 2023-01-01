@@ -1,0 +1,9 @@
+export { default as AboutPage } from './AboutPage';
+export { default as FollowingPage } from './FollowingPage';
+export { default as HomePage } from './HomePage';
+export { default as LivePage } from './LivePage';
+export { default as MusicPage } from './MusicPage';
+export { default as ProfilePage } from './ProfilePage';
+export { default as SearchPage } from './SearchPage';
+export { default as TagPage } from './TagPage';
+export { default as UploadPage } from './UploadPage';

@@ -108,7 +108,7 @@ function Header({ onShowAuthen = defaultFtn }) {
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         {/* left */}
-        <Link to={config.routes.home} className={cx('logo')}>
+        <Link to={config.routes.homePage} className={cx('logo')}>
           <LogoSvg />
         </Link>
 
@@ -118,7 +118,7 @@ function Header({ onShowAuthen = defaultFtn }) {
         {/* right */}
         <div className={cx('header-right')}>
           <Button text leftIcon={<PlusIcon />}>
-            Up load
+            Upload
           </Button>
           {/* check log-in */}
           {currentUser ? (
@@ -135,7 +135,7 @@ function Header({ onShowAuthen = defaultFtn }) {
               </Tippy>
             </div>
           ) : (
-            <Button onClick={() => onShowAuthen(true)} primary>
+            <Button onClick={onShowAuthen} primary>
               Log in
             </Button>
           )}

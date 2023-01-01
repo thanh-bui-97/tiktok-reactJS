@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Header from '~/layouts/components/Header';
 import Sidebar from '~/layouts/components/Container/Sidebar';
 import Authen from '~/components/Authen';
+import MainContainer from '~/layouts/components/Container/MainContainer';
 // CSS module
 import style from './DefaultLayout.module.scss';
 const cx = classNames.bind(style);
@@ -15,7 +16,7 @@ function DefaultLayout({ children }) {
   const [triggerClasses, setTriggerClasses] = useState('remove-modal');
 
   useEffect(() => {
-    // prevent scroll behavior when open modal
+    // prevent scroll global behavior when open modal
     document.body.classList.toggle(cx('modal-open'), showAuthen);
   }, [showAuthen]);
 
@@ -27,6 +28,7 @@ function DefaultLayout({ children }) {
   const handleHideAuthen = useCallback(() => {
     setShowAuthen(false);
     setTriggerClasses('hide-modal');
+
     // remover component
     setTimeout(() => {
       setTriggerClasses('remove-modal');
@@ -38,7 +40,7 @@ function DefaultLayout({ children }) {
       <Header onShowAuthen={handleShowAuthen} />
       <section className={cx('container')}>
         <Sidebar onShowAuthen={handleShowAuthen} />
-        <main className={cx('container--main')}>{children}</main>
+        <MainContainer children={children} />
       </section>
       <Authen onHideAuthen={handleHideAuthen} triggerClasses={triggerClasses} />
     </section>
