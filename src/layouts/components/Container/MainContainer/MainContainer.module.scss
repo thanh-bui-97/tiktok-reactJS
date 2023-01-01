@@ -18,10 +18,38 @@
   flex-direction: column;
   align-items: flex-end;
 
+  transform: translateY(40px);
+  // transition: all cubic-bezier(0.65, 0, 0.35, 1);
+  // -webkit-transition: all cubic-bezier(0.65, 0, 0.35, 1);
+
   margin-bottom: 8px;
-  transition: all 400ms cubic-bezier(0.65, 0, 0.35, 1) 0s;
   z-index: 8;
 }
+.float-btn-group.show-uptop-btn {
+  transition: showUpTopBtn cubic-bezier(0.65, 0, 0.35, 1);
+  animation: showUpTopBtn 0.3s forwards;
+  animation-delay: 0.2s;
+  // ani
+}
+.float-btn-group.hide-uptop-btn {
+  transition: hideUpTopBtn cubic-bezier(1, -0.22, 0.04, 1.44);
+  animation: hideUpTopBtn 0.5s forwards;
+}
+
+@keyframes showUpTopBtn {
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes hideUpTopBtn {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(40px);
+  }
+}
+
 .download-btn {
   margin-bottom: 12px;
   transition: transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1);
