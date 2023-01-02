@@ -1,0 +1,83 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+
+  position: absolute;
+  bottom: 44px;
+  right: 0;
+
+  border: 1px solid rgba(22, 24, 35, 0.03);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  box-shadow: rgb(0 0 0 / 6%) 0px 2px 8px;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  z-index: 3;
+
+  transition: all 0.3s cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
+  transform-origin: right bottom;
+  transform: scale(0);
+}
+.wrapper.zoom-out {
+  animation: zoomOut 0.4s forwards;
+}
+.wrapper.zoom-in {
+  animation: zoomIn 0.4s forwards;
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes zoomIn {
+  100% {
+    transform: scale(1);
+  }
+}
+
+.dowload--list {
+  margin: 0 48px 0 16px;
+}
+.dowload--item {
+  display: flex;
+  align-items: center;
+
+  margin: 6px 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  .title {
+    margin-left: 8px;
+    white-space: nowrap;
+    line-height: 19px;
+  }
+
+  &:hover {
+    background: rgba(22, 24, 35, 0.03);
+  }
+}
+.dowload--hr {
+  position: relative;
+  left: 8px;
+
+  height: 0.5px;
+  width: calc(100% - 16px);
+  background: rgba(22, 24, 35, 0.12);
+  border: none;
+  outline: none;
+}
+
+.close-btn {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+
+  font-size: 20px;
+  cursor: pointer;
+}

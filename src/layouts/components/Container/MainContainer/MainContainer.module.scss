@@ -19,17 +19,18 @@
   align-items: flex-end;
 
   transform: translateY(40px);
-  // transition: all cubic-bezier(0.65, 0, 0.35, 1);
-  // -webkit-transition: all cubic-bezier(0.65, 0, 0.35, 1);
 
   margin-bottom: 8px;
   z-index: 8;
+}
+// The Uptop button effects
+.back-top-btn {
+  transition: transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1);
 }
 .float-btn-group.show-uptop-btn {
   transition: showUpTopBtn cubic-bezier(0.65, 0, 0.35, 1);
   animation: showUpTopBtn 0.3s forwards;
   animation-delay: 0.2s;
-  // ani
 }
 .float-btn-group.hide-uptop-btn {
   transition: hideUpTopBtn cubic-bezier(1, -0.22, 0.04, 1.44);
@@ -50,10 +51,40 @@
   }
 }
 
+// The Download button effects
 .download-btn {
   margin-bottom: 12px;
+  z-index: 2;
+
   transition: transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1);
+  transform-origin: right bottom;
+  transform: scale(1);
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
 }
-.up-to-top-btn {
-  transition: transform 0.3s cubic-bezier(0.4, 0.14, 0.3, 1);
+
+.download-btn.zoom-out {
+  animation: zoomOut 0.4s forwards;
+}
+.download-btn.zoom-in {
+  animation: zoomIn 0.4s forwards;
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
