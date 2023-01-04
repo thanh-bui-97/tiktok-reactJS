@@ -1,7 +1,7 @@
 // libraries
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 // components
 import Button from '~/components/Button';
 import { UpToLineIcon } from '~/components/Icons';
@@ -33,15 +33,15 @@ function MainContainer({ children }) {
     };
   }, []);
 
-  // Expands the App Download
-  function handleOpenDownloadExpanding() {
+  // Handle open/close the Download expanding
+  function handleOpenDownExpand() {
     setDownloadExpanding(true);
     setTriggerClasses('zoom-out');
   }
-  function handleCloseDownloadExpanding() {
+  const handleCloseDownExpand = useCallback(() => {
     setDownloadExpanding(false);
     setTriggerClasses('zoom-in');
-  }
+  }, []);
 
   // Scroll back to Top
   function handleBackTop() {
@@ -54,12 +54,15 @@ function MainContainer({ children }) {
   return (
     <main className={cx('warpper')}>
       {children}
+
+      {/* float group button */}
       <div
         ref={floatBtnGroupRef}
         className={cx('float-btn-group', {
           [showScrollTopBtn]: true,
         })}
       >
+        {/* Download button */}
         <div>
           <Button
             text
@@ -68,15 +71,14 @@ function MainContainer({ children }) {
             className={cx('download-btn', {
               [triggerClasses]: true,
             })}
-            onClick={handleOpenDownloadExpanding}
+            onClick={handleOpenDownExpand}
           >
             Get app
           </Button>
-          <DownloadExpanding
-            onCloseDownloadExpanding={handleCloseDownloadExpanding}
-            onOpenDownloadExpanding={downloadExpanding}
-          />
+          {/* Expanding */}
+          <DownloadExpanding onCloseDownExpand={handleCloseDownExpand} isOpenDownExpand={downloadExpanding} />
         </div>
+        {/* Back top button */}
         <Button primary iconOnly className={cx('back-top-btn')} onClick={handleBackTop}>
           <UpToLineIcon />
         </Button>

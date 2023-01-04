@@ -1,27 +1,48 @@
 // libraries
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 // components
 import { ComputerIcon, MobilePhoneIcon, XmarkIcon } from '~/components/Icons';
+import DesktopDownload from './DesktopDownload';
+import MobiDownload from './MobiDownload';
 // SCSS module
 import style from './DownloadExpanding.module.scss';
 const cx = classNames.bind(style);
 
 function defaultFtn() {}
-function DownloadExpanding({ onOpenDownloadExpanding = false, onCloseDownloadExpanding = defaultFtn }) {
+function DownloadExpanding({ isOpenDownExpand = false, onCloseDownExpand = defaultFtn }) {
   const [triggerClasses, setTriggerClasses] = useState('');
+  const [showDesktopDownload, setShowDesktopDownload] = useState(false);
+  const [showMobiDownload, setShowMobiDownload] = useState(false);
 
+  // Handle open/close the Download Expanding
   useEffect(() => {
-    if (onOpenDownloadExpanding) {
+    if (isOpenDownExpand) {
       setTriggerClasses('zoom-in');
     }
-  }, [onOpenDownloadExpanding]);
+  }, [isOpenDownExpand]);
 
   function handleRemoveClasses() {
     setTriggerClasses('zoom-out');
-    onCloseDownloadExpanding();
+    onCloseDownExpand();
   }
+
+  // Handle open/close Download for desktop box
+  function handleOpenDeskDown() {
+    setShowDesktopDownload(true);
+  }
+  const handleCloseDeskDown = useCallback(() => {
+    setShowDesktopDownload(false);
+  }, []);
+
+  // Handle open/close Download for Mobile box
+  function handleOpenMobiDown() {
+    setShowMobiDownload(true);
+  }
+  const handleCloseMobiDown = useCallback(() => {
+    setShowMobiDownload(false);
+  }, []);
 
   return (
     <section
@@ -30,15 +51,22 @@ function DownloadExpanding({ onOpenDownloadExpanding = false, onCloseDownloadExp
       })}
     >
       <div className={cx('dowload--list')}>
-        <div className={cx('dowload--item')}>
+        {/* Download for desktop */}
+        <div onClick={handleOpenDeskDown} className={cx('dowload--item')}>
           <ComputerIcon />
           <span className={cx('title')}>Get TikTok for desktop</span>
         </div>
+        <DesktopDownload isOpenDeskDown={showDesktopDownload} onCloseDeskDown={handleCloseDeskDown} />
+
+        {/* hr */}
         <hr className={cx('dowload--hr')} />
-        <div className={cx('dowload--item')}>
+
+        {/* Download for mobie phone */}
+        <div onClick={handleOpenMobiDown} className={cx('dowload--item')}>
           <MobilePhoneIcon />
           <span className={cx('title')}>Get TikTok App</span>
         </div>
+        <MobiDownload isOpenMobiDown={showMobiDownload} onCloseMobiDown={handleCloseMobiDown} />
       </div>
       <span onClick={handleRemoveClasses} className={cx('close-btn')}>
         <XmarkIcon />
@@ -53,4 +81,4 @@ DownloadExpanding.propTypes = {
   onCloseDownloadExpanding: PropTypes.func.isRequired,
 };
 
-export default DownloadExpanding;
+export default memo(DownloadExpanding);
