@@ -77,8 +77,8 @@ function DownloadExpanding({ isOpenDownExpand = false, onCloseDownExpand = defau
 
 // set rules for props of component
 DownloadExpanding.propTypes = {
-  onOpenDownloadExpanding: PropTypes.bool.isRequired,
-  onCloseDownloadExpanding: PropTypes.func.isRequired,
+  isOpenDownExpand: PropTypes.bool.isRequired,
+  onCloseDownExpand: PropTypes.func.isRequired,
 };
 
 export default memo(DownloadExpanding);

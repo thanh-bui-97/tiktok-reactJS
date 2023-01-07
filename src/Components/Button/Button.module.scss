@@ -81,10 +81,14 @@
 // button sizes
 .small {
   width: 88px;
+  min-width: 88px;
   height: 28px !important;
+  min-height: 28px !important;
   padding: 0 10px;
+  font-weight: 500;
 }
 .medium {
+  height: 32px;
   min-height: 32px !important;
   padding: 0 8px;
   line-height: 30px;

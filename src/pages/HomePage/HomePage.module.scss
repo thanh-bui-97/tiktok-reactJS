@@ -1,3 +1,198 @@
 .wrapper {
   border: 1px solid #ddd;
 }
+
+.author--container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0;
+  position: relative;
+  max-width: 692px;
+}
+.author--avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 56px;
+  height: 56px;
+  margin: 0px;
+  padding: 0px;
+  font-feature-settings: 'tnum';
+  color: rgb(255, 255, 255);
+  white-space: nowrap;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  overflow: hidden;
+  cursor: pointer;
+}
+.author--dash--boad {
+  margin-left: 12px;
+  width: 624px;
+  flex: 1 1 624px;
+}
+.dash--boad--header {
+  margin-right: 114px;
+}
+.header__name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .nickname {
+    font-family: SofiaPro;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    display: inline-block;
+    margin-right: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .fullname {
+    font-weight: 400;
+    font-size: 14px;
+    display: inline-block;
+    line-height: 28px;
+  }
+}
+.follow--btn {
+  position: absolute;
+  right: 0;
+  top: 28px;
+}
+.header__captions {
+  font-size: 16px;
+  line-height: 22px;
+  .text {
+    display: inline-block;
+    font-weight: 400;
+    margin-right: 4px;
+  }
+  .tag--person {
+    font-weight: 600;
+    margin-right: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .tag--common {
+    margin-right: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.header__music {
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+
+  display: flex;
+  align-items: center;
+
+  .music--icon {
+    margin-right: 5px;
+  }
+  .music--name {
+    line-height: 21px;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.dash--boad--body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.video {
+  height: 480px;
+  width: 269px;
+  border: 1px solid #ddd;
+  position: relative;
+  box-sizing: border-box;
+  background-size: cover;
+  background-color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.option--list {
+  display: flex;
+  flex-direction: column;
+}
+.option--item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+
+  .option--item__icon__background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 48px;
+    height: 48px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    font-size: 0px;
+    border-radius: 50%;
+    background-color: rgba(22, 24, 35, 0.06);
+
+    cursor: pointer;
+  }
+  .option--item__icon.activeC {
+    animation: activeColor 0.3s ease-in-out 0.3s forwards;
+  }
+  .option--item__icon__background.activeBC {
+    animation: activeBackground 0.3s ease-in-out backwards;
+  }
+
+  .option--item__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgba(22, 24, 35, 0.75);
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+  }
+}
+.option--item__count {
+  color: rgba(22, 24, 35, 0.75);
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+}
+@keyframes activeBackground {
+  0% {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
+  100% {
+    background-color: rgba(22, 24, 35, 0.14);
+  }
+}
+@keyframes activeColor {
+  100% {
+    color: rgb(254, 44, 85);
+  }
+}
