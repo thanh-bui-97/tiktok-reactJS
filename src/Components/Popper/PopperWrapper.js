@@ -7,7 +7,7 @@ import style from './PopperWrapper.module.scss';
 const cx = classNames.bind(style);
 
 function PopperWrapper({ children }) {
-  return <div className={cx('popper-base')}>{children}</div>;
+  return <section className={cx('popper-base')}>{children}</section>;
 }
 
 // set rules for props of components

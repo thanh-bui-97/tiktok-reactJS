@@ -2,18 +2,19 @@
   position: fixed;
   top: 60px;
   bottom: 0;
-  // padding-right: 6px;
   width: 357px;
   border: 1px solid #eee;
   z-index: 8;
+  // overflow: hidden;
 }
+
 .container {
   width: calc(100% - 9px);
   height: 100%;
   padding: 20px 2px 26px 8px;
 }
 
-// Scroll bar
+// scroll bar
 .thumb-vertical {
   width: 6px !important;
   background-color: rgba(22, 24, 35, 0.06);

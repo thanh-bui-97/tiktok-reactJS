@@ -6,6 +6,7 @@ import Button from '~/components/Button';
 import { HeartIcon, MessageDotIcon, MusicIcon, ShareIcon } from '~/components/Icons';
 import Images from '~/components/Images';
 import Authen from '~/components/Authen';
+import ShareExpander from '~/components/Popper/ShareExpander';
 // SCSS module
 import style from './HomePage.module.scss';
 const cx = classNames.bind(style);
@@ -137,15 +138,17 @@ function AuthorItem() {
               <strong className={cx('option--item__count')}>349.4K</strong>
             </div>
             <div className={cx('option--item')}>
-              <button
-                className={cx('option--item__icon__background')}
-                onClick={handlePressAction}
-                onDoubleClick={handlePressAction}
-              >
-                <span onClick={handlePressAction} className={cx('option--item__icon')}>
-                  <ShareIcon />
-                </span>
-              </button>
+              <ShareExpander>
+                <button
+                  className={cx('option--item__icon__background')}
+                  onClick={handlePressAction}
+                  onDoubleClick={handlePressAction}
+                >
+                  <span onClick={handlePressAction} className={cx('option--item__icon')}>
+                    <ShareIcon />
+                  </span>
+                </button>
+              </ShareExpander>
               <strong className={cx('option--item__count')}>349.4K</strong>
             </div>
           </div>

@@ -60,7 +60,6 @@ function CustomScrollbars({ children }) {
       autoHide
       // autoHideTimeout={1000}
       autoHideDuration={400}
-      renderView={(props) => <div {...props} className="view" />}
       renderThumbVertical={(props) => <div {...props} className={cx('thumb-vertical')} />}
       renderTrackVertical={(props) => <div {...props} className={cx('track-vertical')} />}
     >
