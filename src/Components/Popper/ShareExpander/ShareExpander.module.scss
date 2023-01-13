@@ -33,8 +33,20 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  padding: 8px 0px;
   overflow: auto;
+
+  .more-btn {
+    width: 100%;
+    font-size: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(22, 24, 35, 0.03);
+    }
+  }
 }
 .share--item {
   display: flex;
@@ -53,9 +65,10 @@
   }
   .title {
     margin-left: 12px;
-    // font-weight: 600;
-    // font-size: 16px;
-    // line-height: 22px;
+  }
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
   }
 }
 
