@@ -18,10 +18,11 @@ function SidebarAccountsList({ label, currentUser = false }) {
   useEffect(() => {
     async function fetchAccountsApi() {
       //The following accounts = The except accounts in List suggested
+      // This following accounts had saved in UserDB
       let followingAccountsId = [];
 
       if (currentUser) {
-        // log-in mode
+        // log-in mode------------------
         if (showAllAccounts) {
           //get list following accounts API
           const followingAccountsList = await accountsService.getFollowingAccounts(1);
@@ -37,9 +38,9 @@ function SidebarAccountsList({ label, currentUser = false }) {
           }
         }
       } else {
-        // log-out mode
+        // log-out mode--------------------
         if (showAllAccounts) {
-          //get list suggested accounts API
+          //get list suggested accounts API: .getSuggestedAccounts(page, except, per_page)
           const suggestedAccountsList = await accountsService.getSuggestedAccounts(1, followingAccountsId, 20);
           if (suggestedAccountsList) {
             setsuggestedAccs(suggestedAccountsList);
