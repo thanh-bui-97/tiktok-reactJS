@@ -30,10 +30,11 @@ function AuthorItem({ videoData }) {
   const [triggerClasses, setTriggerClasses] = useState('remove-modal'); // Authen
   const [volumeValues, setVolumeValues] = useState(50); //dash boad video --volume slider
   const [soundOn, setSoundOn] = useState(true); //dash boad video --volume on/off
-  const [playVideo, setPlayVideo] = useState(false); //dash boad video  --play/pause
+  const [videoPlaying, setVideoPlaying] = useState(false); //dash boad video  --play/pause
   const progressRef = useRef('');
+  const videoRef = useRef('');
 
-  console.log(volumeValues);
+  // console.log(volumeValues);
 
   // console.log(videoData);
 
@@ -80,6 +81,27 @@ function AuthorItem({ videoData }) {
   }
 
   // dash boad video logic ----------
+  useEffect(() => {
+    // handle volume logic
+    videoRef.current.volume = volumeValues * 0.01;
+  }, [volumeValues]);
+
+  // useEffect(() => {
+  // document.body.onscroll = () => {
+  //   // document.body.scrollTop ; // For Safari
+  //   // document.documentElement.scrollTop ;  // For Chrome, Firefox, IE and Opera
+  //   const scrollPosition = window.scrollY;
+  //   console.log(scrollPosition);
+  // };
+  //   function update() {
+  //     const videoPosition = videoRef.current.getBoundingClientRect();
+  //     console.log('bottom: ' + videoPosition.bottom);
+  //   }
+  //   document.body.addEventListener('scroll', () => {
+  //     return videoPlaying && update;
+  //   });
+  // }, []);
+
   function handleSliderVolume() {
     // custom volume slider
     setVolumeValues(progressRef.current.value);
@@ -87,10 +109,12 @@ function AuthorItem({ videoData }) {
   }
 
   function handleToggleVideo() {
-    if (playVideo) {
-      setPlayVideo(false);
+    if (videoPlaying) {
+      setVideoPlaying(false);
+      videoRef.current.pause();
     } else {
-      setPlayVideo(true);
+      setVideoPlaying(true);
+      videoRef.current.play();
     }
   }
 
@@ -101,6 +125,7 @@ function AuthorItem({ videoData }) {
       setSoundOn(true);
     }
   }
+  // console.log(videoRef.current);
 
   return (
     <section className={cx('author--container')}>
@@ -140,10 +165,11 @@ function AuthorItem({ videoData }) {
 
         {/* dash boad play video */}
         <section className={cx('dash--boad--body')}>
-          {/* video */}
           <div className={cx('video--container')}>
-            <video src={videoData.file_url} loop type="video/mp4" />
+            {/* video tag */}
+            <video ref={videoRef} src={videoData.file_url} muted={!soundOn} loop type="video/mp4" />
             <div className={cx('video--controls')}>
+              {/* report */}
               <span className={cx('report')}>
                 <span className={cx('report--icon')}>
                   <FlagReportIcon />
@@ -151,11 +177,13 @@ function AuthorItem({ videoData }) {
                 <p>Report</p>
               </span>
 
+              {/* play/pause */}
               <span onClick={handleToggleVideo} className={cx('play--pause')}>
-                {playVideo && <PauseArrowIcon />}
-                {!playVideo && <PlayArrowIcon />}
+                {videoPlaying && <PauseArrowIcon />}
+                {!videoPlaying && <PlayArrowIcon />}
               </span>
 
+              {/* volume */}
               <span className={cx('volume')}>
                 <span onClick={handleToggleSound} className={cx('volume--icon')}>
                   {soundOn && <VolumeOnIcon />}
