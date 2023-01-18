@@ -24,7 +24,7 @@ const cx = classNames.bind(style);
 const currentUser = false;
 
 function AuthorItem({ videoData }) {
-  const [selectOption, setSelectOption] = useState(false); //option button
+  const [likedBtn, setLikedBtn] = useState(false); //liked button
   const [following, setFollowing] = useState(false); // follow button
   const [showAuthen, setShowAuthen] = useState(false); // Authen
   const [triggerClasses, setTriggerClasses] = useState('remove-modal'); // Authen
@@ -39,10 +39,10 @@ function AuthorItem({ videoData }) {
   // console.log(videoData);
 
   function handleSelectOption() {
-    if (selectOption) {
-      setSelectOption(false);
+    if (likedBtn) {
+      setLikedBtn(false);
     } else {
-      setSelectOption(true);
+      setLikedBtn(true);
     }
   }
 
@@ -86,22 +86,6 @@ function AuthorItem({ videoData }) {
     videoRef.current.volume = volumeValues * 0.01;
   }, [volumeValues]);
 
-  // useEffect(() => {
-  // document.body.onscroll = () => {
-  //   // document.body.scrollTop ; // For Safari
-  //   // document.documentElement.scrollTop ;  // For Chrome, Firefox, IE and Opera
-  //   const scrollPosition = window.scrollY;
-  //   console.log(scrollPosition);
-  // };
-  //   function update() {
-  //     const videoPosition = videoRef.current.getBoundingClientRect();
-  //     console.log('bottom: ' + videoPosition.bottom);
-  //   }
-  //   document.body.addEventListener('scroll', () => {
-  //     return videoPlaying && update;
-  //   });
-  // }, []);
-
   function handleSliderVolume() {
     // custom volume slider
     setVolumeValues(progressRef.current.value);
@@ -116,6 +100,16 @@ function AuthorItem({ videoData }) {
       setVideoPlaying(true);
       videoRef.current.play();
     }
+
+    // document.body.scrollTop ; // For Safari
+    // document.documentElement.scrollTop ;  // For Chrome, Firefox, IE and Opera
+    document.body.onscroll = () => {
+      const videoPosition = videoRef.current.getBoundingClientRect();
+      if (videoPosition.bottom <= 250) {
+        setVideoPlaying(false);
+        videoRef.current.pause();
+      }
+    };
   }
 
   function handleToggleSound() {
@@ -125,7 +119,6 @@ function AuthorItem({ videoData }) {
       setSoundOn(true);
     }
   }
-  // console.log(videoRef.current);
 
   return (
     <section className={cx('author--container')}>
@@ -210,7 +203,7 @@ function AuthorItem({ videoData }) {
             <div className={cx('option--item')}>
               <button
                 className={cx('option--item__icon__background', {
-                  activeBC: selectOption,
+                  activeBC: likedBtn,
                 })}
                 onClick={handleSelectOption}
                 onDoubleClick={handleSelectOption}
@@ -218,7 +211,7 @@ function AuthorItem({ videoData }) {
                 <span
                   onClick={handleSelectOption}
                   className={cx('option--item__icon', {
-                    activeC: selectOption,
+                    activeC: likedBtn,
                   })}
                 >
                   <HeartIcon />

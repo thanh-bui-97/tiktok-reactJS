@@ -126,7 +126,6 @@
   margin-right: 20px;
   box-sizing: border-box;
   outline: none;
-  box-sizing: border-box;
   background-size: cover;
   background-color: #eee;
   border-radius: 8px;
@@ -299,7 +298,7 @@
   }
 }
 .option--item__count {
-  color: rgba(22, 24, 35, 1);
+  color: rgba(22, 24, 35, 0.75);
   font-size: 12px;
   line-height: 17px;
   text-align: center;

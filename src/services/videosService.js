@@ -3,6 +3,7 @@
 // Until
 import * as httpRequest from '~/untils/httpRequest'; //call API wtth axios
 
+export const controller = new AbortController();
 export async function getVideos(type = 'for-you', page = 1, except = null) {
   try {
     const res = await httpRequest.get('videos', {
@@ -15,6 +16,7 @@ export async function getVideos(type = 'for-you', page = 1, except = null) {
         // except: UID của video sẽ bị loại trừ khỏi kết quả
         except,
       },
+      signal: controller.signal,
     });
 
     return res.data;

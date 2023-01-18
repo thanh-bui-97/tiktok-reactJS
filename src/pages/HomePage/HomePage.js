@@ -19,6 +19,11 @@ function HomePage() {
       }
     }
     fetchVideosApi();
+
+    // cancel the request before component unmounts
+    return () => {
+      videosService.controller.abort();
+    };
   }, []);
 
   return (
