@@ -5,12 +5,12 @@ import { Button, Modal } from 'antd';
 // components
 import Images from '~/components/Images';
 // SCSS module
-import style from './DownloadExpanding.module.scss';
+import style from './DownloadModal.module.scss';
 const cx = classNames.bind(style);
 
-function DesktopDownload({ isOpenDeskDown, onCloseDeskDown }) {
+function DownloadModal({ isOpenDownloadModal, onCloseDownloadModal }) {
   function handleClose() {
-    onCloseDeskDown();
+    onCloseDownloadModal();
   }
 
   return (
@@ -18,7 +18,7 @@ function DesktopDownload({ isOpenDeskDown, onCloseDeskDown }) {
       maskStyle={{ backgroundColor: 'transparent' }} //Style for overlay
       width={350}
       style={{ top: 0, right: -390 }}
-      open={isOpenDeskDown}
+      open={isOpenDownloadModal}
       maskClosable //Clicks on outside of modal to close + "must have onCancel"
       onCancel={handleClose} //event close
       footer={[
@@ -49,9 +49,9 @@ function DesktopDownload({ isOpenDeskDown, onCloseDeskDown }) {
 }
 
 // set rules for props of component
-DesktopDownload.propTypes = {
-  isOpenDeskDown: PropTypes.bool.isRequired,
-  onCloseDeskDown: PropTypes.func.isRequired,
+DownloadModal.propTypes = {
+  isOpenDownloadModal: PropTypes.bool.isRequired,
+  onCloseDownloadModal: PropTypes.func.isRequired,
 };
 
-export default memo(DesktopDownload);
+export default memo(DownloadModal);

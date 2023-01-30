@@ -93,6 +93,7 @@ function AuthorItem({ videoData }) {
   }
 
   function handleToggleVideo() {
+    // handle play/pause video
     if (videoPlaying) {
       setVideoPlaying(false);
       videoRef.current.pause();
@@ -101,15 +102,14 @@ function AuthorItem({ videoData }) {
       videoRef.current.play();
     }
 
-    // document.body.scrollTop ; // For Safari
-    // document.documentElement.scrollTop ;  // For Chrome, Firefox, IE and Opera
-    document.body.onscroll = () => {
-      const videoPosition = videoRef.current.getBoundingClientRect();
-      if (videoPosition.bottom <= 250) {
-        setVideoPlaying(false);
-        videoRef.current.pause();
-      }
-    };
+    // how to handle pause videos when sroll out of video
+    // document.body.onscroll = () => {
+    //   const videoPosition = videoRef.current.getBoundingClientRect();
+    //   if (videoPosition.bottom <= 250) {
+    //     setVideoPlaying(false);
+    //     videoRef.current.pause();
+    //   }
+    // };
   }
 
   function handleToggleSound() {
@@ -249,7 +249,7 @@ function AuthorItem({ videoData }) {
         </section>
       </section>
 
-      {/* Authen */}
+      {/* Modal */}
       <Authen onHideAuthen={handleHideAuthen} triggerClasses={triggerClasses} />
     </section>
   );

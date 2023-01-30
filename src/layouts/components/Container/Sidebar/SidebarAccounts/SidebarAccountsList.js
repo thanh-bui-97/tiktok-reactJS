@@ -57,10 +57,9 @@ function SidebarAccountsList({ label, currentUser = false }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     // cancel the request before component unmounts
-    console.log(accountsService);
-    return () => {
-      accountsService.controller.abort();
-    };
+    // return () => {
+    //   accountsService.controller.abort();
+    // };
   }, [showAllAccounts]);
 
   function handleShowAll() {

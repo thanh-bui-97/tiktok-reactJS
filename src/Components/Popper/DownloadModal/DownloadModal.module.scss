@@ -1,0 +1,28 @@
+// The  desktop Download expanding
+.desktop-download-container {
+  .desktop-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+  .desktop-body {
+    margin: 20px 0 30px 0;
+    display: flex;
+  }
+  .desktop-logo {
+    width: 53px;
+    margin-right: 20px;
+  }
+  .desktop-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .desktop-label {
+    font-weight: 400;
+    font-size: 1.6rem;
+  }
+  .desktop-link {
+    line-height: 20px;
+    font-size: 1.3rem;
+  }
+}

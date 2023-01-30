@@ -7,18 +7,18 @@ import { Modal } from 'antd';
 import Images from '~/components/Images';
 import { XmarkIcon } from '~/components/Icons';
 // SCSS module
-import style from './DownloadExpanding.module.scss';
+import style from './DownloadAlert.module.scss';
 const cx = classNames.bind(style);
 
-function MobiDownload({ isOpenMobiDown, onCloseMobiDown }) {
+function DownloadAlert({ isOpenDownloadAlert, onCloseDownloadAlert }) {
   function handleClose() {
-    onCloseMobiDown();
+    onCloseDownloadAlert();
   }
 
   return (
     <Modal
       centered //position center
-      open={isOpenMobiDown} //isOpen
+      open={isOpenDownloadAlert} //isOpen
       maskClosable //Clicks on outside of modal to close + "must have onCancel"
       onCancel={handleClose} //event close
       closable={false} //Click Xmarks btn or Cancel btn
@@ -77,9 +77,9 @@ function MobiDownload({ isOpenMobiDown, onCloseMobiDown }) {
 }
 
 // set rules for props of component
-MobiDownload.propTypes = {
-  isOpenMobiDown: PropTypes.bool.isRequired,
-  onCloseMobiDown: PropTypes.func.isRequired,
+DownloadAlert.propTypes = {
+  isOpenDownloadAlert: PropTypes.bool.isRequired,
+  onCloseDownloadAlert: PropTypes.func.isRequired,
 };
 
-export default memo(MobiDownload);
+export default memo(DownloadAlert);

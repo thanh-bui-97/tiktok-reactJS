@@ -18,10 +18,11 @@ function MainContainer({ children }) {
 
   // float group buttons effects
   useEffect(() => {
+    let scrollPosition;
     document.body.onscroll = () => {
-      // document.body.scrollTop ; // For Safari
-      // document.documentElement.scrollTop ;  // For Chrome, Firefox, IE and Opera
-      const scrollPosition = window.scrollY;
+      // document.body.scrollTop ; // For Chrome, Firefox, IE and Opera
+      // document.documentElement.scrollTop ;  // For Safari
+      scrollPosition = window.scrollY;
 
       if (scrollPosition > 0) {
         setShowScrollTopBtn('show-uptop-btn');

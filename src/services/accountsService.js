@@ -3,7 +3,7 @@
 // Until
 import * as httpRequest from '~/untils/httpRequest'; //call API wtth axios
 
-export const controller = new AbortController();
+// export const controller = new AbortController();
 export async function getSuggestedAccounts(page = 1, except = [], per_page) {
   try {
     const res = await httpRequest.get('users/suggested', {
@@ -16,7 +16,7 @@ export async function getSuggestedAccounts(page = 1, except = [], per_page) {
         // per_page: Số lượng trả về trên một trang
         per_page,
       },
-      signal: controller.signal,
+      // signal: controller.signal,
     });
 
     return res.data;
@@ -34,7 +34,7 @@ export async function getFollowingAccounts(page = 1, except = []) {
         // except: Danh sách id sẽ bị loại trừ khỏi response, phân cách các id bằng dấu phẩy. VD: 1,2,3,4
         except: except.join(),
       },
-      signal: controller.signal,
+      // signal: controller.signal,
     });
 
     return res.data;

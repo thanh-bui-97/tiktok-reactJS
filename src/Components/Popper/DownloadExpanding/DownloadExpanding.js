@@ -4,8 +4,8 @@ import classNames from 'classnames/bind';
 import { memo, useCallback, useEffect, useState } from 'react';
 // components
 import { ComputerIcon, MobilePhoneIcon, XmarkIcon } from '~/components/Icons';
-import DesktopDownload from './DesktopDownload';
-import MobiDownload from './MobiDownload';
+import DownloadModal from '~/components/Popper/DownloadModal';
+import DownloadAlert from '~/components/Popper/DownloadAlert';
 // SCSS module
 import style from './DownloadExpanding.module.scss';
 const cx = classNames.bind(style);
@@ -13,8 +13,8 @@ const cx = classNames.bind(style);
 function defaultFtn() {}
 function DownloadExpanding({ isOpenDownExpand = false, onCloseDownExpand = defaultFtn }) {
   const [triggerClasses, setTriggerClasses] = useState('');
-  const [showDesktopDownload, setShowDesktopDownload] = useState(false);
-  const [showMobiDownload, setShowMobiDownload] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [showDownloadAlert, setShowDownloadAlert] = useState(false);
 
   // Handle open/close the Download Expanding
   useEffect(() => {
@@ -29,19 +29,19 @@ function DownloadExpanding({ isOpenDownExpand = false, onCloseDownExpand = defau
   }
 
   // Handle open/close Download for desktop box
-  function handleOpenDeskDown() {
-    setShowDesktopDownload(true);
+  function handleOpenDownloadModal() {
+    setShowDownloadModal(true);
   }
-  const handleCloseDeskDown = useCallback(() => {
-    setShowDesktopDownload(false);
+  const handleCloseDownloadModal = useCallback(() => {
+    setShowDownloadModal(false);
   }, []);
 
   // Handle open/close Download for Mobile box
-  function handleOpenMobiDown() {
-    setShowMobiDownload(true);
+  function handleOpenDownloadAlert() {
+    setShowDownloadAlert(true);
   }
-  const handleCloseMobiDown = useCallback(() => {
-    setShowMobiDownload(false);
+  const handleCloseDownloadAlert = useCallback(() => {
+    setShowDownloadAlert(false);
   }, []);
 
   return (
@@ -52,21 +52,21 @@ function DownloadExpanding({ isOpenDownExpand = false, onCloseDownExpand = defau
     >
       <div className={cx('dowload--list')}>
         {/* Download for desktop */}
-        <div onClick={handleOpenDeskDown} className={cx('dowload--item')}>
+        <div onClick={handleOpenDownloadModal} className={cx('dowload--item')}>
           <ComputerIcon />
           <span className={cx('title')}>Get TikTok for desktop</span>
         </div>
-        <DesktopDownload isOpenDeskDown={showDesktopDownload} onCloseDeskDown={handleCloseDeskDown} />
+        <DownloadModal isOpenDownloadModal={showDownloadModal} onCloseDownloadModal={handleCloseDownloadModal} />
 
         {/* hr */}
         <hr className={cx('dowload--hr')} />
 
         {/* Download for mobie phone */}
-        <div onClick={handleOpenMobiDown} className={cx('dowload--item')}>
+        <div onClick={handleOpenDownloadAlert} className={cx('dowload--item')}>
           <MobilePhoneIcon />
           <span className={cx('title')}>Get TikTok App</span>
         </div>
-        <MobiDownload isOpenMobiDown={showMobiDownload} onCloseMobiDown={handleCloseMobiDown} />
+        <DownloadAlert isOpenDownloadAlert={showDownloadAlert} onCloseDownloadAlert={handleCloseDownloadAlert} />
       </div>
       <span onClick={handleRemoveClasses} className={cx('close-btn')}>
         <XmarkIcon />
