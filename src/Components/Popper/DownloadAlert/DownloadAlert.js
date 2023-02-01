@@ -1,11 +1,9 @@
-// libraries
 import PropTypes from 'prop-types';
 import { memo } from 'react';
 import classNames from 'classnames/bind';
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 // components
 import Images from '~/components/Images';
-import { XmarkIcon } from '~/components/Icons';
 // SCSS module
 import style from './DownloadAlert.module.scss';
 const cx = classNames.bind(style);
@@ -17,60 +15,34 @@ function DownloadAlert({ isOpenDownloadAlert, onCloseDownloadAlert }) {
 
   return (
     <Modal
-      centered //position center
-      open={isOpenDownloadAlert} //isOpen
+      maskStyle={{ backgroundColor: 'transparent' }} //Style for overlay
+      width={350}
+      style={{ top: 0, right: -390 }}
+      open={isOpenDownloadAlert}
       maskClosable //Clicks on outside of modal to close + "must have onCancel"
       onCancel={handleClose} //event close
-      closable={false} //Click Xmarks btn or Cancel btn
-      width={400}
-      bodyStyle={{ padding: 0, margin: 0 }}
-      footer={null}
+      footer={[
+        <Button key="dowload" type="primary">
+          Cài đặt
+        </Button>,
+        <Button key="cancel" onClick={handleClose} style={{ color: '#1677ff', width: 75 }}>
+          Hủy
+        </Button>,
+      ]}
     >
-      <section className={cx('mobi--download__container')}>
-        <div className={cx('mobi--header')}>
-          <h2 className={cx('mobi--title')}>Get the TikTok app</h2>
-          <span onClick={handleClose} className={cx('mobi--close')}>
-            <XmarkIcon />
-          </span>
+      <section className={cx('desktop-download-container')}>
+        <h4 className={cx('desktop-title')}>Cài đặt ứng dụng?</h4>
+        <div className={cx('desktop-body')}>
+          <Images
+            alt="logo"
+            src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/uvkuhyieh7lpqpbj/pwa/128x128.png"
+            className={cx('desktop-logo')}
+          />
+          <div className={cx('desktop-contents')}>
+            <h4 className={cx('desktop-label')}>TikTok</h4>
+            <p className={cx('desktop-link')}>www.tiktok.com</p>
+          </div>
         </div>
-        <section className={cx('mobi--body')}>
-          {/* QR code downloading */}
-          <div className={cx('QRcode')}>
-            <p className={cx('QRcode--label')}>Scan QR code to download TikTok</p>
-            <Images
-              src="https://lf16-tiktok-web.ttwstatic.com/obj/tiktok-web/tiktok/webapp/main/webapp-desktop/47624c235266dedd8e4d.png"
-              alt="QRcode"
-              className={cx('QRcode--img')}
-            />
-          </div>
-
-          {/* Socical app downloading */}
-          <div className={cx('social--app')}>
-            <p className={cx('app--label')}>Download from app stores</p>
-            <div className={cx('app--img__group')}>
-              <Images
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Get_it_from_Microsoft_Badge.svg/512px-Get_it_from_Microsoft_Badge.svg.png?20171029232220"
-                alt="Microsoft"
-                className={cx('app--img__item')}
-              />
-              <Images
-                src="https://www.digitaler-impfnachweis-app.de/svg/app-store-de.svg"
-                alt="AppleStore"
-                className={cx('app--img__item')}
-              />
-              <Images
-                src="https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png"
-                alt="AmazonAppstore"
-                className={cx('app--img__item')}
-              />
-              <Images
-                src="https://www.ald-vt.com/wp-content/uploads/2018/09/google-play-badge-DE-2-300x89.png"
-                alt="GooglePlayStore"
-                className={cx('app--img__item')}
-              />
-            </div>
-          </div>
-        </section>
       </section>
     </Modal>
   );

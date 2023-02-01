@@ -52,7 +52,7 @@ const FOOTER_DATA_POLICIES = [
   { title: 'Creator Potal', to: config.routes.aboutPage },
   { title: 'Community Guidelines', to: config.routes.aboutPage },
 ];
-const currentUser = false;
+const currentUser = true;
 
 function CustomScrollbars({ children }) {
   return (

@@ -17,11 +17,12 @@ import {
 import Images from '~/components/Images';
 import Authen from '~/components/Authen';
 import ShareExpander from '~/components/Popper/ShareExpander';
+import ReportModal from '~/components/Popper/ReportModal';
 // SCSS module
 import style from './HomePage.module.scss';
 const cx = classNames.bind(style);
 
-const currentUser = false;
+const currentUser = true;
 
 function AuthorItem({ videoData }) {
   const [likedBtn, setLikedBtn] = useState(false); //liked button
@@ -251,6 +252,7 @@ function AuthorItem({ videoData }) {
 
       {/* Modal */}
       <Authen onHideAuthen={handleHideAuthen} triggerClasses={triggerClasses} />
+      <ReportModal />
     </section>
   );
 }

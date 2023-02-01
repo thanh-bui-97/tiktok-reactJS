@@ -144,9 +144,9 @@ function Header({ onShowAuthen = defaultFtn }) {
               <span className={cx('user-avatar')}>
                 <Image
                   className={cx('avatar')}
-                  src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/8cf4fa65fd16b13e8d042e0379631773~c5_100x100.jpeg?x-expires=1667390400&x-signature=lGN2wBPorptyUxJgm4FOzqNcW3E%3"
+                  src="#"
                   alt="huyenbaby"
-                  fallBack="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b33abf2d0e2ddea25f9e33edefd9b82f~c5_100x100.jpeg?x-expires=1668254400&x-signature=gOuiZgN6OM%2Fh%2FKnUiQSbCdKyNkw%3D" //custom trường hợp nếu ảnh lỗi thì dùng ảnh này làm thay thế
+                  // fallBack="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b33abf2d0e2ddea25f9e33edefd9b82f~c5_100x100.jpeg?x-expires=1668254400&x-signature=gOuiZgN6OM%2Fh%2FKnUiQSbCdKyNkw%3D" //custom trường hợp nếu ảnh lỗi thì dùng ảnh này làm thay thế
                 />
               </span>
             ) : (

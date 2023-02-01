@@ -84,6 +84,14 @@ a {
   color: rgba(84, 84, 84, 0.92);
 }
 
+// custom Antd modal
+.global-custom-modal-antd {
+  .ant-modal-content {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
 // fonts emmbeded
 @font-face {
   font-family: ProximaNova;

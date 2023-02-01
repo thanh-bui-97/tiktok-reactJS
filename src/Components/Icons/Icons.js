@@ -276,6 +276,26 @@ export const ChevronLeftIcon = ({ className, width = '1em', height = '1em' }) =>
     </svg>
   );
 };
+export const ChevronRightIcon = ({ className, width = '20', height = '20' }) => {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={height}
+      data-e2e=""
+      viewBox="0 0 48 48"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      // style="color: rgba(22, 24, 35, 0.5);"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M43.4142 22.5858L27.1213 6.29289C26.7308 5.90237 26.0976 5.90237 25.7071 6.29289L24.2929 7.70711C23.9024 8.09763 23.9024 8.7308 24.2929 9.12132L39.1716 24L24.2929 38.8787C23.9024 39.2692 23.9024 39.9024 24.2929 40.2929L25.7071 41.7071C26.0976 42.0976 26.7308 42.0976 27.1213 41.7071L43.4142 25.4142C44.1953 24.6332 44.1953 23.3668 43.4142 22.5858Z"
+      ></path>
+    </svg>
+  );
+};
 export const ChevronDownIcon = ({ className, width = '1em', height = '1em' }) => {
   return (
     <svg
