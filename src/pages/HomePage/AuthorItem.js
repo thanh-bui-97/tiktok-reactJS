@@ -1,4 +1,5 @@
 // libraries
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { useCallback, useEffect, useRef, useState } from 'react';
 // components
@@ -32,43 +33,11 @@ function AuthorItem({ videoData }) {
   const [volumeValues, setVolumeValues] = useState(50); //dash boad video --volume slider
   const [soundOn, setSoundOn] = useState(true); //dash boad video --volume on/off
   const [videoPlaying, setVideoPlaying] = useState(false); //dash boad video  --play/pause
+  const [showReportModal, setShowReportModal] = useState(false); //report modal
   const progressRef = useRef('');
   const videoRef = useRef('');
 
-  // console.log(volumeValues);
-
-  // console.log(videoData);
-
-  function handleSelectOption() {
-    if (likedBtn) {
-      setLikedBtn(false);
-    } else {
-      setLikedBtn(true);
-    }
-  }
-
-  // Authen --------
-  useEffect(() => {
-    // prevent scroll global behavior when open modal
-    document.body.classList.toggle(cx('modal-open'), showAuthen);
-  }, [showAuthen]);
-
-  const handleShowAuthen = useCallback(() => {
-    setShowAuthen(true);
-    setTriggerClasses('show-modal');
-  }, []);
-
-  const handleHideAuthen = useCallback(() => {
-    setShowAuthen(false);
-    setTriggerClasses('hide-modal');
-
-    // remover component
-    setTimeout(() => {
-      setTriggerClasses('remove-modal');
-    }, 500);
-  }, []);
-
-  // follow button ------
+  // follow button logic ---------
   function handleFollow() {
     if (following) {
       setFollowing(false);
@@ -121,6 +90,44 @@ function AuthorItem({ videoData }) {
     }
   }
 
+  // options: likes, comments, share logic---------------
+  function handleSelectOption() {
+    if (likedBtn) {
+      setLikedBtn(false);
+    } else {
+      setLikedBtn(true);
+    }
+  }
+
+  // Authen modal --------
+  useEffect(() => {
+    // prevent scroll global behavior when open modal
+    document.body.classList.toggle(cx('modal-open'), showAuthen);
+  }, [showAuthen]);
+
+  const handleShowAuthen = useCallback(() => {
+    setShowAuthen(true);
+    setTriggerClasses('show-modal');
+  }, []);
+
+  const handleHideAuthen = useCallback(() => {
+    setShowAuthen(false);
+    setTriggerClasses('hide-modal');
+
+    // remove component
+    setTimeout(() => {
+      setTriggerClasses('remove-modal');
+    }, 500);
+  }, []);
+
+  // Report Modal -----------------
+  const handleShowReportModal = useCallback(() => {
+    setShowReportModal(true);
+  }, []);
+  const handleHideReportModal = useCallback(() => {
+    setShowReportModal(false);
+  }, []);
+
   return (
     <section className={cx('author--container')}>
       {/* avatar */}
@@ -164,7 +171,7 @@ function AuthorItem({ videoData }) {
             <video ref={videoRef} src={videoData.file_url} muted={!soundOn} loop type="video/mp4" />
             <div className={cx('video--controls')}>
               {/* report */}
-              <span className={cx('report')}>
+              <span onClick={handleShowReportModal} className={cx('report')}>
                 <span className={cx('report--icon')}>
                   <FlagReportIcon />
                 </span>
@@ -252,9 +259,14 @@ function AuthorItem({ videoData }) {
 
       {/* Modal */}
       <Authen onHideAuthen={handleHideAuthen} triggerClasses={triggerClasses} />
-      <ReportModal />
+      <ReportModal isShow={showReportModal} onHideReportModal={handleHideReportModal} />
     </section>
   );
 }
+
+// Set rules for props of component
+AuthorItem.propTypes = {
+  videoData: PropTypes.object.isRequired,
+};
 
 export default AuthorItem;
