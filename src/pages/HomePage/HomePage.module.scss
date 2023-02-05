@@ -1,4 +1,5 @@
 .wrapper {
+  margin-right: 16px;
 }
 
 .author--container {
@@ -41,6 +42,10 @@
   flex-direction: row;
   align-items: center;
 
+  &:hover .nickname {
+    text-decoration: underline;
+  }
+
   .nickname {
     font-family: SofiaPro;
     font-weight: 700;
@@ -48,10 +53,6 @@
     line-height: 25px;
     display: inline-block;
     margin-right: 4px;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
   .fullname {
     display: inline-block;
@@ -59,6 +60,10 @@
     font-weight: 400;
     font-size: 14px;
     padding-top: 7px;
+  }
+  .check {
+    margin-left: 4px;
+    color: #20d5ec;
   }
 }
 .follow--btn {

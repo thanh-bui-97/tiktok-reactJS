@@ -23,32 +23,27 @@ function SidebarAccountsList({ label, currentUser = false }) {
 
       if (currentUser) {
         // log-in mode------------------
-        if (showAllAccounts) {
-          //get list following accounts API
-          const followingAccountsList = await accountsService.getFollowingAccounts(1);
-          if (followingAccountsList) {
+        const followingAccountsList = await accountsService.getFollowingAccounts(1);
+        followingAccountsList.map((flowAcc) => followingAccountsId.push(flowAcc.id));
+        if (followingAccountsList) {
+          if (showAllAccounts) {
             setfollowingAccs(followingAccountsList);
-            followingAccountsList.map((flowAcc) => followingAccountsId.push(flowAcc.id));
-          }
-        } else {
-          const followingAccountsList = await accountsService.getFollowingAccounts(1);
-          if (followingAccountsList) {
-            setfollowingAccs(followingAccountsList);
-            followingAccountsList.map((flowAcc) => followingAccountsId.push(flowAcc.id));
+          } else {
+            const lessAccounts = followingAccountsList.slice(0, 5);
+            setfollowingAccs(lessAccounts);
           }
         }
       } else {
         // log-out mode--------------------
-        if (showAllAccounts) {
-          //get list suggested accounts API: .getSuggestedAccounts(page, except, per_page)
-          const suggestedAccountsList = await accountsService.getSuggestedAccounts(1, followingAccountsId, 20);
-          if (suggestedAccountsList) {
+        const suggestedAccountsList = await accountsService.getSuggestedAccounts(1, followingAccountsId, 20);
+        suggestedAccountsList.map((flowAcc) => followingAccountsId.push(flowAcc.id));
+
+        if (suggestedAccountsList) {
+          if (showAllAccounts) {
             setsuggestedAccs(suggestedAccountsList);
-          }
-        } else {
-          const suggestedAccountsList = await accountsService.getSuggestedAccounts(1, followingAccountsId, 5);
-          if (suggestedAccountsList) {
-            setsuggestedAccs(suggestedAccountsList);
+          } else {
+            const lessAccounts = suggestedAccountsList.slice(0, 5);
+            setsuggestedAccs(lessAccounts);
           }
         }
       }

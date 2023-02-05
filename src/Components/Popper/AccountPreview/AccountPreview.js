@@ -11,7 +11,18 @@ import { CircleCheckSolidIcon } from '~/components/Icons';
 import style from './AccountPreview.module.scss';
 const cx = classNames.bind(style);
 
-function AccountPreview({ children, avatar, nickname, firstName, lastName, tick, likes, followers }) {
+function AccountPreview({
+  children,
+  avatar,
+  nickname,
+  firstName,
+  lastName,
+  tick,
+  likes,
+  followers,
+  delay = [500, 500],
+  placement = 'bottom', //check "all props" in tippy library
+}) {
   function accountPreviewBox(props) {
     return (
       <PopperWrapper>
@@ -45,7 +56,7 @@ function AccountPreview({ children, avatar, nickname, firstName, lastName, tick,
   }
   return (
     <div>
-      <Tippy offset={[-17, 0]} delay={[800, 200]} interactive placement="bottom" render={accountPreviewBox}>
+      <Tippy offset={[-17, 0]} delay={delay} interactive placement={placement} render={accountPreviewBox}>
         {children}
       </Tippy>
     </div>
@@ -62,6 +73,8 @@ AccountPreview.propTypes = {
   tick: PropTypes.bool,
   likes: PropTypes.number,
   followers: PropTypes.number,
+  delay: PropTypes.array,
+  placement: PropTypes.string,
 };
 
 export default AccountPreview;

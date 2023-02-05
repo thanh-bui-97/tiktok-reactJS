@@ -19,6 +19,8 @@ function SidebarAccountItem({ suggAccInfors }) {
       tick={suggAccInfors.tick}
       likes={suggAccInfors.likes_count}
       followers={suggAccInfors.followers_count}
+      delay={[800, 200]} //show/hide
+      placement="bottom" //check prop placement of tippy library
     >
       <div className={cx('account-item')}>
         <Images className={cx('avatar')} src={suggAccInfors.avatar} alt={suggAccInfors.nickname} />

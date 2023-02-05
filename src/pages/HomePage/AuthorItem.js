@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 // components
 import Button from '~/components/Button';
 import {
+  CircleCheckSolidIcon,
   FlagReportIcon,
   HeartIcon,
   MessageDotIcon,
@@ -21,6 +22,7 @@ import ShareExpander from '~/components/Popper/ShareExpander';
 import ReportModal from '~/components/Popper/ReportModal';
 // SCSS module
 import style from './HomePage.module.scss';
+import AccountPreview from '~/components/Popper/AccountPreview';
 const cx = classNames.bind(style);
 
 const currentUser = true;
@@ -131,16 +133,49 @@ function AuthorItem({ videoData }) {
   return (
     <section className={cx('author--container')}>
       {/* avatar */}
-      <span className={cx('author--avatar')}>
-        <Images src={videoData.user.avatar} alt={videoData.user.nickname} />
-      </span>
+      <AccountPreview
+        avatar={videoData.user.avatar}
+        nickname={videoData.user.nickname}
+        firstName={videoData.user.first_name}
+        lastName={videoData.user.last_name}
+        tick={videoData.user.tick}
+        likes={videoData.user.likes_count}
+        followers={videoData.user.followers_count}
+        delay={[800, 200]} //show/hide
+        placement="bottom-start" //check "all props" in tippy library
+      >
+        <span className={cx('author--avatar')}>
+          <Images src={videoData.user.avatar} alt={videoData.user.nickname} />
+        </span>
+      </AccountPreview>
+
       <section className={cx('author--dash--boad')}>
         {/* dash boad author information  */}
         <section className={cx('dash--boad--header')}>
-          <span className={cx('header__name')}>
-            <h3 className={cx('nickname')}>{videoData.user.nickname}</h3>
-            <h4 className={cx('fullname')}>{`${videoData.user.last_name} ${videoData.user.first_name}`}</h4>
-          </span>
+          <AccountPreview
+            avatar={videoData.user.avatar}
+            nickname={videoData.user.nickname}
+            firstName={videoData.user.first_name}
+            lastName={videoData.user.last_name}
+            tick={videoData.user.tick}
+            likes={videoData.user.likes_count}
+            followers={videoData.user.followers_count}
+            delay={[800, 200]} //show/hide
+            placement="bottom-start" //check "all props" in tippy library
+          >
+            <span className={cx('header__name')}>
+              <h3 className={cx('nickname')}>
+                {videoData.user.nickname}
+                {videoData.user.tick && (
+                  <span className={cx('check')}>
+                    <CircleCheckSolidIcon />
+                  </span>
+                )}
+              </h3>
+              <h4 className={cx('fullname')}>{`${videoData.user.last_name} ${videoData.user.first_name}`}</h4>
+            </span>
+          </AccountPreview>
+
           <div className={cx('header__captions')}>
             <p className={cx('text')}>{videoData.description}</p>
             <span className={cx('tag--person')}>
@@ -228,12 +263,8 @@ function AuthorItem({ videoData }) {
               <strong className={cx('option--item__count')}>349.4K</strong>
             </div>
             <div className={cx('option--item')}>
-              <button
-                className={cx('option--item__icon__background')}
-                onClick={handleSelectOption}
-                onDoubleClick={handleSelectOption}
-              >
-                <span onClick={handleSelectOption} className={cx('option--item__icon')}>
+              <button className={cx('option--item__icon__background')}>
+                <span className={cx('option--item__icon')}>
                   <MessageDotIcon />
                 </span>
               </button>
@@ -241,12 +272,8 @@ function AuthorItem({ videoData }) {
             </div>
             <div className={cx('option--item')}>
               <ShareExpander>
-                <button
-                  className={cx('option--item__icon__background')}
-                  onClick={handleSelectOption}
-                  onDoubleClick={handleSelectOption}
-                >
-                  <span onClick={handleSelectOption} className={cx('option--item__icon')}>
+                <button className={cx('option--item__icon__background')}>
+                  <span className={cx('option--item__icon')}>
                     <ShareIcon />
                   </span>
                 </button>

@@ -1,9 +1,11 @@
+// libraries
 import classNames from 'classnames/bind';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+// components
 import AuthorItem from './AuthorItem';
-import style from './HomePage.module.scss';
 import * as videosService from '~/services/videosService';
-
+// SCSS modules
+import style from './HomePage.module.scss';
 const cx = classNames.bind(style);
 
 function HomePage() {
