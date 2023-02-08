@@ -1,5 +1,5 @@
 // libraries
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 // components
 import RecommendCard from './RecommendCard';
@@ -13,7 +13,10 @@ const currentUser = false;
 
 function FollowingPage() {
   const [recommendCards, setRecommendCards] = useState([]);
+  const [page, setPage] = useState(1);
+  const followingPageRef = useRef(null);
 
+  // fetch API videos
   useEffect(() => {
     async function fetchAccountsApi() {
       if (currentUser) {
@@ -24,15 +27,31 @@ function FollowingPage() {
       } else {
         // log-out mode--------------------
         // only show suggested accounts
-        const suggestedAccountsList = await accountsService.getSuggestedAccounts(1, [], 20);
-        setRecommendCards(suggestedAccountsList);
+        const suggestedAccountsList = await accountsService.getSuggestedAccounts(page, [], 15);
+        if (suggestedAccountsList) {
+          setRecommendCards((prev) => [...prev, ...suggestedAccountsList]);
+        }
       }
     }
     fetchAccountsApi();
+  }, [page]);
+
+  // fetch more videos when scroll to max point ---------------
+  useEffect(() => {
+    window.addEventListener('scroll', handleFetchMoreVideos);
+    return () => window.removeEventListener('scroll', handleFetchMoreVideos);
   }, []);
 
+  function handleFetchMoreVideos() {
+    if (followingPageRef !== null) {
+      if (window.innerHeight + window.scrollY >= followingPageRef.current.offsetHeight) {
+        setPage((page) => page + 1);
+      }
+    }
+  }
+
   return (
-    <section className={cx('wrapper')}>
+    <section ref={followingPageRef} className={cx('wrapper')}>
       {recommendCards.map((userCard, index) => (
         <RecommendCard key={index} cardData={userCard} />
       ))}

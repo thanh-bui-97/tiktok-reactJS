@@ -33,8 +33,8 @@ function AuthorItem({ videoData }) {
   const [showAuthen, setShowAuthen] = useState(false); // Authen
   const [triggerClasses, setTriggerClasses] = useState('remove-modal'); // Authen
   const [volumeValues, setVolumeValues] = useState(50); //dash boad video --volume slider
-  const [soundOn, setSoundOn] = useState(true); //dash boad video --volume on/off
-  const [videoPlaying, setVideoPlaying] = useState(false); //dash boad video  --play/pause
+  const [soundOn, setSoundOn] = useState(true); //dash boad video --volume on/off button
+  const [videoPlaying, setVideoPlaying] = useState(false); //dash boad video  --play/pause button
   const [showReportModal, setShowReportModal] = useState(false); //report modal
   const progressRef = useRef('');
   const videoRef = useRef('');
@@ -52,7 +52,7 @@ function AuthorItem({ videoData }) {
     }
   }
 
-  // dash boad video logic ----------
+  // dash boad video logic -------------------
   useEffect(() => {
     // handle volume logic
     videoRef.current.volume = volumeValues * 0.01;
@@ -65,7 +65,7 @@ function AuthorItem({ videoData }) {
   }
 
   function handleToggleVideo() {
-    // handle play/pause video
+    // play/pause video
     if (videoPlaying) {
       setVideoPlaying(false);
       videoRef.current.pause();
@@ -73,16 +73,27 @@ function AuthorItem({ videoData }) {
       setVideoPlaying(true);
       videoRef.current.play();
     }
-
-    // how to handle pause videos when sroll out of video
-    // document.body.onscroll = () => {
-    //   const videoPosition = videoRef.current.getBoundingClientRect();
-    //   if (videoPosition.bottom <= 250) {
-    //     setVideoPlaying(false);
-    //     videoRef.current.pause();
-    //   }
-    // };
   }
+
+  function handleVideoWhenScroll() {
+    // pause video when scrolling
+    const videoPosition = videoRef.current.getBoundingClientRect();
+    if (
+      videoPosition.top >= 0 &&
+      videoPosition.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    ) {
+      setVideoPlaying(true);
+      videoRef.current.play();
+    } else {
+      setVideoPlaying(false);
+      videoRef.current.pause();
+    }
+  }
+  useEffect(() => {
+    // pause video when scrolling
+    window.addEventListener('scroll', handleVideoWhenScroll);
+    return () => window.removeEventListener('scroll', handleVideoWhenScroll);
+  }, []);
 
   function handleToggleSound() {
     if (soundOn) {

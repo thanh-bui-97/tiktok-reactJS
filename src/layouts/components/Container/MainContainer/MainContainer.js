@@ -17,21 +17,20 @@ function MainContainer({ children }) {
   const [triggerClasses, setTriggerClasses] = useState('');
 
   // float group buttons effects
+  function handleFloatGroupButton() {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 0) {
+      setShowScrollTopBtn('show-uptop-btn');
+    } else {
+      setTimeout(() => {
+        setShowScrollTopBtn('hide-uptop-btn');
+      }, 400);
+    }
+  }
   useEffect(() => {
-    let scrollPosition;
-    document.body.onscroll = () => {
-      // document.body.scrollTop ; // For Chrome, Firefox, IE and Opera
-      // document.documentElement.scrollTop ;  // For Safari
-      scrollPosition = window.scrollY;
-
-      if (scrollPosition > 0) {
-        setShowScrollTopBtn('show-uptop-btn');
-      } else {
-        setTimeout(() => {
-          setShowScrollTopBtn('hide-uptop-btn');
-        }, 400);
-      }
-    };
+    // float group buttons effects
+    window.addEventListener('scroll', handleFloatGroupButton);
+    return () => window.removeEventListener('scroll', handleFloatGroupButton);
   }, []);
 
   // Handle open/close the Download expanding

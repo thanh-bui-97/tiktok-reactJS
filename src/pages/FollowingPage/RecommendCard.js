@@ -11,7 +11,7 @@ import { CircleCheckSolidIcon } from '~/components/Icons';
 import style from './FollowingPage.module.scss';
 const cx = classNames.bind(style);
 
-const currentUser = false;
+const currentUser = true;
 
 function RecommendCard({ cardData }) {
   const [showAuthen, setShowAuthen] = useState(false); // Authen

@@ -1,6 +1,6 @@
 // libraries
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // components
 import AuthorItem from './AuthorItem';
 import * as videosService from '~/services/videosService';
@@ -10,28 +10,39 @@ const cx = classNames.bind(style);
 
 function HomePage() {
   const [listVideos, setListVideos] = useState([]);
+  const [page, setPage] = useState(0);
+  const homePageRef = useRef(null);
 
-  // fetch videos "For-You"
+  // fetch videos: type "For-You"-----------------
   useEffect(() => {
     async function fetchVideosApi() {
       // .getVideos(type, page, except)
-      const suggestedListVideos = await videosService.getVideos();
+      const suggestedListVideos = await videosService.getVideos('for-you', page, null);
       if (suggestedListVideos) {
-        setListVideos(suggestedListVideos);
+        setListVideos((prev) => [...prev, ...suggestedListVideos]);
       }
     }
     fetchVideosApi();
+  }, [page]);
 
-    // cancel the request before component unmounts
-    // return () => {
-    //   videosService.controller.abort();
-    // };
+  // fetch more videos when scroll to max point ---------------
+  useEffect(() => {
+    window.addEventListener('scroll', handleFetchMoreVideos);
+    return () => window.removeEventListener('scroll', handleFetchMoreVideos);
   }, []);
 
+  function handleFetchMoreVideos() {
+    if (homePageRef !== null) {
+      if (window.innerHeight + window.scrollY >= homePageRef.current.offsetHeight) {
+        setPage((page) => page + 1);
+      }
+    }
+  }
+
   return (
-    <section className={cx('wrapper')}>
-      {listVideos.map((video) => (
-        <AuthorItem key={video.id} videoData={video} />
+    <section ref={homePageRef} className={cx('wrapper')}>
+      {listVideos.map((video, index) => (
+        <AuthorItem key={index} videoData={video} />
       ))}
     </section>
   );
