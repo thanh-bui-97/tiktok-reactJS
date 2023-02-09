@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/tiktok-reacJS/static/css/main.26c93371.css",
-    "main.js": "/tiktok-reacJS/static/js/main.6595309e.js",
-    "static/js/787.b01767df.chunk.js": "/tiktok-reacJS/static/js/787.b01767df.chunk.js",
-    "static/media/ProximaNova-Semibold.woff2": "/tiktok-reacJS/static/media/ProximaNova-Semibold.db7972dbe0b808f96bae.woff2",
-    "static/media/sofiapro-bold.woff2": "/tiktok-reacJS/static/media/sofiapro-bold.1d7186488612ac20891f.woff2",
-    "static/media/Proxima-Nova-Bold.woff2": "/tiktok-reacJS/static/media/Proxima-Nova-Bold.8dd475cbc90552d85f91.woff2",
-    "static/media/Proxima-Nova-Regular.woff2": "/tiktok-reacJS/static/media/Proxima-Nova-Regular.6c83037ae28747e6d774.woff2",
-    "static/media/Proxima-Nova-Semibold.woff2": "/tiktok-reacJS/static/media/Proxima-Nova-Semibold.c5632e80f6e35c93156f.woff2",
-    "static/media/logo.svg": "/tiktok-reacJS/static/media/logo.391c3093be2d04e0b597b016b2e4d681.svg",
-    "index.html": "/tiktok-reacJS/index.html",
-    "main.26c93371.css.map": "/tiktok-reacJS/static/css/main.26c93371.css.map",
-    "main.6595309e.js.map": "/tiktok-reacJS/static/js/main.6595309e.js.map",
-    "787.b01767df.chunk.js.map": "/tiktok-reacJS/static/js/787.b01767df.chunk.js.map"
+    "main.css": "/tiktok-reactJS/static/css/main.de22ec8f.css",
+    "main.js": "/tiktok-reactJS/static/js/main.2883fecf.js",
+    "static/js/787.b01767df.chunk.js": "/tiktok-reactJS/static/js/787.b01767df.chunk.js",
+    "static/media/ProximaNova-Semibold.woff2": "/tiktok-reactJS/static/media/ProximaNova-Semibold.db7972dbe0b808f96bae.woff2",
+    "static/media/sofiapro-bold.woff2": "/tiktok-reactJS/static/media/sofiapro-bold.1d7186488612ac20891f.woff2",
+    "static/media/Proxima-Nova-Bold.woff2": "/tiktok-reactJS/static/media/Proxima-Nova-Bold.8dd475cbc90552d85f91.woff2",
+    "static/media/Proxima-Nova-Regular.woff2": "/tiktok-reactJS/static/media/Proxima-Nova-Regular.6c83037ae28747e6d774.woff2",
+    "static/media/Proxima-Nova-Semibold.woff2": "/tiktok-reactJS/static/media/Proxima-Nova-Semibold.c5632e80f6e35c93156f.woff2",
+    "static/media/logo.svg": "/tiktok-reactJS/static/media/logo.391c3093be2d04e0b597b016b2e4d681.svg",
+    "index.html": "/tiktok-reactJS/index.html",
+    "main.de22ec8f.css.map": "/tiktok-reactJS/static/css/main.de22ec8f.css.map",
+    "main.2883fecf.js.map": "/tiktok-reactJS/static/js/main.2883fecf.js.map",
+    "787.b01767df.chunk.js.map": "/tiktok-reactJS/static/js/787.b01767df.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.26c93371.css",
-    "static/js/main.6595309e.js"
+    "static/css/main.de22ec8f.css",
+    "static/js/main.2883fecf.js"
   ]
 }
