@@ -21,6 +21,7 @@ function ShareItem({ itemData, isReloadData = false }) {
   useEffect(() => {
     setDataRender(itemData.less);
     setShowMoreBtn(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReloadData]);
 
   return (
