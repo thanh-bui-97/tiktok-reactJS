@@ -55,6 +55,7 @@ function SidebarAccountsList({ label, currentUser = false }) {
     // return () => {
     //   accountsService.controller.abort();
     // };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showAllAccounts]);
 
   function handleShowAll() {
