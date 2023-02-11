@@ -1,3 +1,9 @@
+:root {
+  --animation-duration: 0.8s;
+  --circle-diameter: 20px;
+  --circle-scale-percent: 0.05;
+}
+
 .wrapper {
   margin-right: 16px;
   position: relative;
@@ -124,12 +130,9 @@
   align-items: flex-end;
 }
 
-// custom videos
 .video--container {
   position: relative;
 
-  max-height: 480px;
-  max-width: 269px;
   margin-right: 20px;
   box-sizing: border-box;
   outline: none;
@@ -146,6 +149,7 @@
   }
 }
 
+// video controls : play/pause/volume ----------------
 .video--controls {
   position: absolute;
   inset: 0;
@@ -255,7 +259,57 @@
     }
   }
 }
+// loading animations icon ------------
+.wrapper .loading--animation--icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
+  margin-top: 20px;
+
+  &:before,
+  &:after {
+    content: ' ';
+    display: table-cell;
+    position: absolute;
+    width: var(--circle-diameter);
+    height: var(--circle-diameter);
+    border-radius: 50%;
+    animation-duration: var(--animation-duration);
+    animation-name: revolve;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    mix-blend-mode: darken;
+  }
+
+  &:before {
+    background: rgb(77, 232, 244);
+  }
+
+  &:after {
+    background: rgb(253, 62, 62);
+    animation-delay: calc(var(--animation-duration) / -2);
+  }
+}
+
+@keyframes revolve {
+  0% {
+    left: 0;
+  }
+  25% {
+    transform: scale(calc(1 + var(--circle-scale-percent)));
+  }
+  50% {
+    left: var(--circle-diameter);
+  }
+  75% {
+    transform: scale(calc(1 - var(--circle-scale-percent)));
+  }
+  100% {
+    left: 0;
+  }
+}
+// options selectors---------
 .option--list {
   display: flex;
   flex-direction: column;
