@@ -11,6 +11,7 @@ const cx = classNames.bind(style);
 function HomePage() {
   const [listVideos, setListVideos] = useState([]);
   const [page, setPage] = useState(0);
+  const [fetchLoading, setFetchLoading] = useState(false);
   const homePageRef = useRef(null);
 
   // fetch videos: type "For-You"-----------------
@@ -34,7 +35,11 @@ function HomePage() {
   function handleFetchMoreVideos() {
     if (homePageRef !== null) {
       if (window.innerHeight + window.scrollY >= homePageRef.current.offsetHeight) {
+        setFetchLoading(true);
         setPage((page) => page + 1);
+        setTimeout(() => {
+          setFetchLoading(false);
+        }, 2000);
       }
     }
   }
@@ -44,6 +49,8 @@ function HomePage() {
       {listVideos.map((video, index) => (
         <AuthorItem key={index} videoData={video} />
       ))}
+
+      {fetchLoading && <div className={cx('loading--animation--icon')} />}
     </section>
   );
 }

@@ -95,7 +95,7 @@ const USER_MENU = [
   },
 ];
 
-const currentUser = false;
+const currentUser = true;
 
 // handleActiveItem
 function handleActiveItem(menuItems) {
@@ -142,12 +142,7 @@ function Header({ onShowAuthen = defaultFtn }) {
           <Setting menuItems={currentUser ? USER_MENU : MENU_ITEMS} onActive={handleActiveItem}>
             {currentUser ? (
               <span className={cx('user-avatar')}>
-                <Image
-                  className={cx('avatar')}
-                  src="#"
-                  alt="huyenbaby"
-                  // fallBack="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b33abf2d0e2ddea25f9e33edefd9b82f~c5_100x100.jpeg?x-expires=1668254400&x-signature=gOuiZgN6OM%2Fh%2FKnUiQSbCdKyNkw%3D" //custom trường hợp nếu ảnh lỗi thì dùng ảnh này làm thay thế
-                />
+                <Image className={cx('avatar')} src="#" alt="huyenbaby" />
               </span>
             ) : (
               <span className={cx('menu-icon')}>

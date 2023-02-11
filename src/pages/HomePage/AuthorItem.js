@@ -212,7 +212,14 @@ function AuthorItem({ videoData }) {
 
         {/* dash boad play video */}
         <section className={cx('dash--boad--body')}>
-          <div className={cx('video--container')}>
+          <div
+            style={
+              (videoData.meta.video.resolution_x < videoData.meta.video.resolution_y && { maxWidth: '273px' }) ||
+              (videoData.meta.video.resolution_x === videoData.meta.video.resolution_y && { maxWidth: '463px' }) ||
+              (videoData.meta.video.resolution_x > videoData.meta.video.resolution_y && { width: '486px' })
+            }
+            className={cx('video--container')}
+          >
             {/* video tag */}
             <video ref={videoRef} src={videoData.file_url} muted={!soundOn} loop type="video/mp4" />
             <div className={cx('video--controls')}>
